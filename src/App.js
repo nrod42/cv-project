@@ -1,17 +1,75 @@
 import React from "react";
-import GeneralInfoForm from "./Components/GeneralForm";
+import Navigation from "./Components/Navigation";
+import ContactForm from "./Components/ContactForm";
 import EducationForm from "./Components/EducationForm";
 import WorkForm from "./Components/WorkForm";
 
 class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentPage: {
+        isContactActive: true,
+        isEducationActive: false,
+        isWorkActive: false, 
+      }
+     };
+
+    this.prevPage = this.prevPage.bind(this)
+    this.nextPage = this.nextPage.bind(this)
+  }
+
+  nextPage() {
+    if (this.state.currentPage.isContactActive) {
+      this.setState({
+        currentPage: {
+          isContactActive: !(this.state.currentPage.isContactActive),
+          isEducationActive: !(this.state.currentPage.isEducationActive),
+        }
+      });
+    } else if (this.state.currentPage.isEducationActive) {
+      this.setState({
+        currentPage: {
+          isEducationActive: !this.state.currentPage.isEducationActive,
+          isWorkActive: !this.state.currentPage.isWorkActive,
+        }
+      });
+    }
+  }
+
+  prevPage() {
+    if (this.state.currentPage.isWorkActive) {
+      this.setState({
+        currentPage: {
+          isWorkActive: !(this.state.currentPage.isWorkActive),
+          isEducationActive: !(this.state.currentPage.isEducationActive),
+        }
+      });
+    } else if (this.state.currentPage.isEducationActive) {
+      this.setState({
+        currentPage: {
+          isEducationActive: !this.state.currentPage.isEducationActive,
+          isContactActive: !this.state.currentPage.isContactActive,
+        }
+      });
+    }
+  }
+
   render() {
+    
     return (
       <div className="App">
+        <Navigation />
         <div className="forms">
-          <GeneralInfoForm />
-          <EducationForm />
-          <WorkForm />
+          <ContactForm className={this.state.currentPage.isContactActive ? 'activeForm' : 'inactiveForm'}/>
+          <EducationForm className={this.state.currentPage.isEducationActive ? 'activeForm' : 'inactiveForm'}> 
+            {/* <div><button type="button">Add More</button></div> */}
+          </EducationForm>
+          <WorkForm className={this.state.currentPage.isWorkActive ? 'activeForm' : 'inactiveForm'}/>
         </div>
+        <button onClick={this.prevPage}>Previous</button>
+        <button onClick={this.nextPage}>Next</button>
       </div>
     );
   }

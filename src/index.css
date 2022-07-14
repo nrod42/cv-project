@@ -3,7 +3,18 @@
     height: 500px;
 }
 
-#generalForm, #educationForm, #workForm {
+.activeForm {
+    opacity: 1;
+    visibility: visible;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.inactiveForm {
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
