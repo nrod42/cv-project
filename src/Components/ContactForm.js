@@ -3,7 +3,8 @@ import React from "react";
 class ContactForm extends React.Component {
   render() {
     return (
-      <div className={this.props.className}>
+      <div>
+        <h2>General Info</h2>
         <form>
           <label htmlFor="firstName">First Name:</label>
           <input type="text" id="firstName"></input>

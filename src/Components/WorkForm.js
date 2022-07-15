@@ -3,7 +3,7 @@ import React from "react";
 class WorkForm extends React.Component {
   render() {
     return (
-      <div className={this.props.className}>
+      <div>
         <form id="workForm">
           <label htmlFor="company">Company:</label>
           <input type="text" id="company"></input>
