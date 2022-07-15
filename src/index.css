@@ -44,6 +44,7 @@ html, body {
     overflow: auto;
     display: flex;
     flex-direction: column;
+    height: auto;
 }
 
 .inactiveForm {
@@ -54,8 +55,24 @@ html, body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 0;
 }
 
 .formNavBtns {
 
+}
+
+.ActiveEducationForm {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    overflow: auto;
+    
+}
+
+.InactiveEducationForm {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
 }

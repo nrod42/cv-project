@@ -5,6 +5,7 @@ class EducationForm extends React.Component {
     super();
 
     this.state = {
+      isActive: true,
       cardInfo: {
         school: "",
         fromYear: "",
@@ -18,6 +19,7 @@ class EducationForm extends React.Component {
     this.handleToYearChange = this.handleToYearChange.bind(this);
     this.handleDegreeChange = this.handleDegreeChange.bind(this);
     this.onSubmitTask = this.onSubmitTask.bind(this);
+    this.toggleEducationForm = this.toggleEducationForm.bind(this);
   }
 
   handleSchoolChange = (e) => {
@@ -64,6 +66,12 @@ class EducationForm extends React.Component {
     });
   };
 
+  toggleEducationForm = () => {
+    this.setState({
+      isActive: !this.state.isActive,
+    });
+  };
+
   onSubmitTask = (e) => {
     e.preventDefault();
     console.log(this.state.cardInfo);
@@ -75,12 +83,16 @@ class EducationForm extends React.Component {
         degree: "",
       },
     });
+    this.toggleEducationForm();
   };
 
   render() {
-    // const { school, fromYear, toYear, degree } = this.props;
     return (
-      <div>
+      <div
+        className={
+          this.state.isActive ? "ActiveEducationForm" : "InactiveEducationForm"
+        }
+      >
         <form onSubmit={this.onSubmitTask}>
           <label htmlFor="school">University / School:</label>
           <input
@@ -110,9 +122,9 @@ class EducationForm extends React.Component {
             id="degree"
             value={this.state.cardInfo.degree}
           ></input>
-          <button type="submit">Submit</button>
+          <button type="submit">Add</button>
+          <button type="button">Cancel</button>
         </form>
-        <button>Cancel</button>
       </div>
     );
   }
