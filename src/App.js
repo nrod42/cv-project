@@ -1,8 +1,8 @@
 import React from "react";
 import Navigation from "./Components/Navigation";
 import ContactForm from "./Components/ContactForm";
-import Education from "./Components/Education";
-import WorkForm from "./Components/WorkForm";
+import Education from "./Components/Education/Education";
+import Work from "./Components/Work/Work";
 
 class App extends React.Component {
   constructor() {
@@ -14,12 +14,10 @@ class App extends React.Component {
         isEducationActive: false,
         isWorkActive: false,
       },
-      workSections: [<WorkForm />],
     };
 
     this.prevPage = this.prevPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
-    this.addWork = this.addWork.bind(this);
   }
 
   nextPage() {
@@ -58,13 +56,6 @@ class App extends React.Component {
     }
   }
 
-  addWork() {
-    this.setState({
-      workSections: [...this.state.workSections, <WorkForm />],
-    });
-  }
-
-  //Instead of adding one component, there should be an array
   render() {
     return (
       <div className="App">
@@ -72,35 +63,34 @@ class App extends React.Component {
         <div className="mainWrapper">
           <div className="forms">
             <div
-              className={
-                this.state.currentPage.isContactActive
-                  ? "activeForm"
-                  : "inactiveForm"
-              }
+              className={`contactSectionWrapper
+                ${
+                  this.state.currentPage.isContactActive
+                    ? "activeForm"
+                    : "inactiveForm"
+                }`}
             >
               <ContactForm />
             </div>
             <div
-              className={
-                this.state.currentPage.isEducationActive
-                  ? "activeForm"
-                  : "inactiveForm"
-              }
+              className={`educationSectionWrapper
+                ${
+                  this.state.currentPage.isEducationActive
+                    ? "activeForm"
+                    : "inactiveForm"
+                }`}
             >
               <Education />
             </div>
             <div
-              className={
-                this.state.currentPage.isWorkActive
-                  ? "activeForm"
-                  : "inactiveForm"
-              }
+              className={`workSectionWrapper
+                ${
+                  this.state.currentPage.isWorkActive
+                    ? "activeForm"
+                    : "inactiveForm"
+                }`}
             >
-              <h2>Work History</h2>
-              {this.state.workSections}
-              <div className="addMoreBtn">
-                <button onClick={this.addWork}>Add More</button>
-              </div>
+              <Work />
             </div>
           </div>
           <div className="formNavBtns">

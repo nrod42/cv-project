@@ -1,8 +1,8 @@
 import React from "react";
 
 class EducationForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isActive: true,
@@ -19,7 +19,7 @@ class EducationForm extends React.Component {
     this.handleToYearChange = this.handleToYearChange.bind(this);
     this.handleDegreeChange = this.handleDegreeChange.bind(this);
     this.onSubmitTask = this.onSubmitTask.bind(this);
-    this.toggleEducationForm = this.toggleEducationForm.bind(this);
+    this.cancelForm = this.cancelForm.bind(this);
   }
 
   handleSchoolChange = (e) => {
@@ -66,15 +66,10 @@ class EducationForm extends React.Component {
     });
   };
 
-  toggleEducationForm = () => {
-    this.setState({
-      isActive: !this.state.isActive,
-    });
-  };
-
   onSubmitTask = (e) => {
     e.preventDefault();
-    console.log(this.state.cardInfo);
+    this.props.updateCardInfo(e);
+    this.props.addCard(this.state.cardInfo);
     this.setState({
       cardInfo: {
         school: "",
@@ -83,49 +78,51 @@ class EducationForm extends React.Component {
         degree: "",
       },
     });
-    this.toggleEducationForm();
+    this.props.toggleForm();
+  };
+
+  cancelForm = (e) => {
+    this.props.toggleForm();
   };
 
   render() {
     return (
-      <div
-        className={
-          this.state.isActive ? "ActiveEducationForm" : "InactiveEducationForm"
-        }
-      >
-        <form onSubmit={this.onSubmitTask}>
-          <label htmlFor="school">University / School:</label>
-          <input
-            onChange={this.handleSchoolChange}
-            type="text"
-            id="school"
-            value={this.state.cardInfo.school}
-          ></input>
-          <label htmlFor="fromYear">From Year:</label>
-          <input
-            onChange={this.handleFromYearChange}
-            type="text"
-            id="fromYear"
-            value={this.state.cardInfo.fromYear}
-          ></input>
-          <label htmlFor="toYear">To Year:</label>
-          <input
-            onChange={this.handleToYearChange}
-            type="text"
-            id="toYear"
-            value={this.state.cardInfo.toYear}
-          ></input>
-          <label htmlFor="degree">Qualification / Degree:</label>
-          <input
-            onChange={this.handleDegreeChange}
-            type="text"
-            id="degree"
-            value={this.state.cardInfo.degree}
-          ></input>
+      <form onSubmit={this.onSubmitTask}>
+        <label htmlFor="school">University / School:</label>
+        <input
+          onChange={this.handleSchoolChange}
+          type="text"
+          id="school"
+          value={this.state.cardInfo.school}
+        ></input>
+        <label htmlFor="fromYear">From Year:</label>
+        <input
+          onChange={this.handleFromYearChange}
+          type="text"
+          id="fromYear"
+          value={this.state.cardInfo.fromYear}
+        ></input>
+        <label htmlFor="toYear">To Year:</label>
+        <input
+          onChange={this.handleToYearChange}
+          type="text"
+          id="toYear"
+          value={this.state.cardInfo.toYear}
+        ></input>
+        <label htmlFor="degree">Qualification / Degree:</label>
+        <input
+          onChange={this.handleDegreeChange}
+          type="text"
+          id="degree"
+          value={this.state.cardInfo.degree}
+        ></input>
+        <div className="cardBtns">
           <button type="submit">Add</button>
-          <button type="button">Cancel</button>
-        </form>
-      </div>
+          <button onClick={this.cancelForm} type="button">
+            Cancel
+          </button>
+        </div>
+      </form>
     );
   }
 }

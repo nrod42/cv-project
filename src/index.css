@@ -14,6 +14,7 @@ html, body {
 }
 
 .App {
+    margin: 0 100px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -30,21 +31,27 @@ html, body {
     align-items: center;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
 .forms {
     position: relative;
-    
-    height: 500px; /*Need to come back and change this. Manually fix btns where they should go */
+    width: 100%;
+    height: 100%; 
 }
 
 .activeForm {
-    position: absolute;
-    width: auto;
+    position: relative;
+    height: 100%;
+    width: 100%;
     opacity: 1;
     visibility: visible;
     overflow: auto;
-    display: flex;
-    flex-direction: column;
-    height: auto;
 }
 
 .inactiveForm {
@@ -58,21 +65,52 @@ html, body {
     height: 0;
 }
 
-.formNavBtns {
-
-}
-
-.ActiveEducationForm {
-    height: auto;
+.activeEducationForm, .activeWorkForm {
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     opacity: 1;
     visibility: visible;
     overflow: auto;
-    
 }
 
-.InactiveEducationForm {
+.activeEducationForm{
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: calc(50% - (250px/2));
+    left: calc(50% - (250px/2));
+}
+
+.activeWorkForm {
+    width: 250px;
+    height: 375px;
+    position: absolute;
+    top: calc(50% - (375px/2));
+    left: calc(50% - (250px/2));
+}
+
+.inactiveEducationForm, .inactiveWorkForm{
     height: 0;
     opacity: 0;
     visibility: hidden;
     overflow: hidden;
+}
+
+.educationSection, .workSection {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.eduCard, .workCard {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
 }
