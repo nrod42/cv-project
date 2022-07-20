@@ -15,6 +15,7 @@ class WorkCard extends React.Component {
           <p>Description: {description}</p>
         </div>
         <div>
+          <button type="button">Edit</button>
           <button type="button">Delete</button>
         </div>
       </div>

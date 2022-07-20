@@ -20,6 +20,7 @@ class Education extends React.Component {
     this.toggleEducationForm = this.toggleEducationForm.bind(this);
     this.updateCardInfo = this.updateCardInfo.bind(this);
     this.addEducationCard = this.addEducationCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   updateCardInfo(e) {
@@ -37,9 +38,22 @@ class Education extends React.Component {
     this.setState({
       educationCards: [
         ...this.state.educationCards,
-        <EducationCard cardInfo={props} />,
+        <EducationCard toggleEducationForm = {this.toggleEducationForm} deleteCard={this.deleteCard} cardId={uniqid()} cardInfo={props} />,
       ],
     });
+  }
+
+  deleteCard (id) {
+   this.setState({
+    educationCards: this.state.educationCards.filter((card) => card.props.cardId !== id)
+   })
+  }
+
+  editCard (id) {
+    this.toggleEducationForm()
+    
+    //if the id exists, find the index, delete that card, and make "new" card and place it there
+    // else, make brand new card
   }
 
   toggleEducationForm = () => {
@@ -47,6 +61,12 @@ class Education extends React.Component {
       isActive: !this.state.isActive,
     });
   };
+
+  // showCardIds () { 
+  //   console.log(this.state.educationCards.filter((card) => card.props.cardId !== 'l5skhpoz'))
+  //   this.state.educationCards.forEach((card) => console.log(card.props.cardId))
+    
+  // }
 
   render() {
     return (

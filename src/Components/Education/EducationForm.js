@@ -18,7 +18,7 @@ class EducationForm extends React.Component {
     this.handleFromYearChange = this.handleFromYearChange.bind(this);
     this.handleToYearChange = this.handleToYearChange.bind(this);
     this.handleDegreeChange = this.handleDegreeChange.bind(this);
-    this.onSubmitTask = this.onSubmitTask.bind(this);
+    this.onSubmitForm = this.onSubmitForm.bind(this);
     this.cancelForm = this.cancelForm.bind(this);
   }
 
@@ -66,7 +66,7 @@ class EducationForm extends React.Component {
     });
   };
 
-  onSubmitTask = (e) => {
+  onSubmitForm = (e) => {
     e.preventDefault();
     this.props.updateCardInfo(e);
     this.props.addCard(this.state.cardInfo);
@@ -81,13 +81,17 @@ class EducationForm extends React.Component {
     this.props.toggleForm();
   };
 
+  // handleSubmit () {
+  //   this.props.onSubmitForm
+  // }
+
   cancelForm = (e) => {
     this.props.toggleForm();
   };
 
   render() {
     return (
-      <form onSubmit={this.onSubmitTask}>
+      <form onSubmit={this.onSubmitForm}>
         <label htmlFor="school">University / School:</label>
         <input
           onChange={this.handleSchoolChange}
