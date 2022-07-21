@@ -1,59 +1,58 @@
 import React from "react";
 import EducationForm from "./EducationForm";
 import EducationCard from "./EducationCard";
-import uniqid from "uniqid";
 
 class Education extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isActive: true,
+      eduData: [],
       educationCards: [],
-      cardInfo: {
-        school: "",
-        fromYear: "",
-        toYear: "",
-        degree: "",
-      },
+      editedObj: "",
     };
 
     this.toggleEducationForm = this.toggleEducationForm.bind(this);
-    this.updateCardInfo = this.updateCardInfo.bind(this);
-    this.addEducationCard = this.addEducationCard.bind(this);
+    this.addEduObj = this.addEduObj.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.createCards = this.createCards.bind(this);
+    this.findObj = this.findObj.bind(this);
   }
 
-  updateCardInfo(e) {
+  createCards() {
+    let newState = this.state.eduData.map((obj) => (
+      <EducationCard
+        toggleForm={this.toggleEducationForm}
+        deleteCard={this.deleteCard}
+        findObj={this.findObj}
+        cardInfo={obj}
+      />
+    ));
     this.setState({
-      cardInfo: {
-        school: e.target.school.value,
-        fromYear: e.target.fromYear.value,
-        toYear: e.target.toYear.value,
-        degree: e.target.degree.value,
-      },
+      educationCards: newState,
     });
   }
 
-  addEducationCard(props) {
+  addEduObj(obj) {
     this.setState({
-      educationCards: [
-        ...this.state.educationCards,
-        <EducationCard toggleEducationForm = {this.toggleEducationForm} deleteCard={this.deleteCard} cardId={uniqid()} cardInfo={props} />,
-      ],
+      eduData: [...this.state.eduData, obj],
     });
   }
 
-  deleteCard (id) {
-   this.setState({
-    educationCards: this.state.educationCards.filter((card) => card.props.cardId !== id)
-   })
+  findObj(id) {
+    this.setState({
+      editedObj: this.state.eduData.find((eduObj) => eduObj.id === id),
+    });
   }
 
-  editCard (id) {
-    this.toggleEducationForm()
-    
-    //if the id exists, find the index, delete that card, and make "new" card and place it there
-    // else, make brand new card
+  fillForm(obj) {}
+  // editedCardInfo(cardInfo) {}
+
+  async deleteCard(id) {
+    await this.setState({
+      eduData: this.state.eduData.filter((eduObj) => eduObj.id !== id),
+    });
+    this.createCards();
   }
 
   toggleEducationForm = () => {
@@ -61,12 +60,6 @@ class Education extends React.Component {
       isActive: !this.state.isActive,
     });
   };
-
-  // showCardIds () { 
-  //   console.log(this.state.educationCards.filter((card) => card.props.cardId !== 'l5skhpoz'))
-  //   this.state.educationCards.forEach((card) => console.log(card.props.cardId))
-    
-  // }
 
   render() {
     return (
@@ -81,9 +74,10 @@ class Education extends React.Component {
           }
         >
           <EducationForm
-            updateCardInfo={this.updateCardInfo}
             toggleForm={this.toggleEducationForm}
-            addCard={this.addEducationCard}
+            addEduObj={this.addEduObj}
+            createCards={this.createCards}
+            editedObj={this.state.editedObj}
           />
         </div>
         <div className="addMoreBtn">

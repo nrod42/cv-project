@@ -4,19 +4,24 @@ class EducationCard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
-  handleDelete () {
-    this.props.deleteCard(this.props.cardId)
+  handleDelete() {
+    this.props.deleteCard(this.props.cardInfo.id);
   }
 
-  editCard () {
-
+  handleEdit() {
+    this.props.toggleForm();
+    this.props.findObj(this.props.cardInfo.id); //returns edited obj;
   }
+
+  fillForm(obj) {}
+  //when edit is clicked, it needs to tell parent the id of the clicked card
 
   render() {
-    const { school, fromYear, toYear, degree } = this.props.cardInfo; 
+    const { school, fromYear, toYear, degree } = this.props.cardInfo;
 
     return (
       <div className="eduCard">
@@ -27,8 +32,12 @@ class EducationCard extends React.Component {
           <p>Qualification / Degree: {degree}</p>
         </div>
         <div>
-          <button onClick={this.props.toggleEducationForm} type="button">Edit</button>
-          <button onClick={this.handleDelete} type="button">Delete</button>
+          <button onClick={this.handleEdit} type="button">
+            Edit
+          </button>
+          <button onClick={this.handleDelete} type="button">
+            Delete
+          </button>
         </div>
       </div>
     );
