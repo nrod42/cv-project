@@ -1,18 +1,8 @@
 import React from "react";
-import uniqid from "uniqid";
 
 class EducationForm extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isActive: true,
-      school: "",
-      fromYear: "",
-      toYear: "",
-      degree: "",
-      id: uniqid(),
-    };
 
     this.handleSchoolChange = this.handleSchoolChange.bind(this);
     this.handleFromYearChange = this.handleFromYearChange.bind(this);
@@ -21,66 +11,44 @@ class EducationForm extends React.Component {
     this.onSubmitForm = this.onSubmitForm.bind(this);
     this.cancelForm = this.cancelForm.bind(this);
   }
-
   handleSchoolChange = (e) => {
-    this.setState({
-      school: e.target.value,
-    });
+    this.props.setSchool(e.target.value)
+    // maybe we make another state. one state is for inputs being edit-active or not and another for the form itself
+    // this.props.setEditing(false)
   };
 
   handleFromYearChange = (e) => {
-    this.setState({
-      fromYear: e.target.value,
-    });
+    this.props.setFromYear(e.target.value)
+    // this.props.setEditing(false)
   };
 
   handleToYearChange = (e) => {
-    this.setState({
-      toYear: e.target.value,
-    });
+    this.props.setToYear(e.target.value)
+    // this.props.setEditing(false)
   };
 
   handleDegreeChange = (e) => {
-    this.setState({
-      degree: e.target.value,
-    });
+    this.props.setDegree(e.target.value)
+    // this.props.setEditing(false)
   };
 
   async onSubmitForm(e) {
     e.preventDefault();
-    let eduObj = {
-      school: this.state.school,
-      fromYear: this.state.fromYear,
-      toYear: this.state.toYear,
-      degree: this.state.degree,
-      id: this.state.id,
-    };
-    await this.props.addEduObj(eduObj);
+    await this.props.addEduObj()
+    
+    if (this.props.editing === true) {
+      //we delete the old card. since we're going to reorder cards array based on data anyway there is no need to keep in same order
+      this.props.deleteCard(this.props.editedObj.id)
+    }
     this.props.createCards();
-    this.setState({
-      school: "",
-      fromYear: "",
-      toYear: "",
-      degree: "",
-      id: uniqid(),
-    });
+    this.props.clearForm();
     this.props.toggleForm();
+    this.props.setEditing(false)
   }
 
   cancelForm = (e) => {
     this.props.toggleForm();
   };
-
-  editedForm(obj) {
-    if (this.props.editedObj !== "")
-      this.setState({
-        school: obj.school,
-        fromYear: obj.fromYear,
-        toYear: obj.toYear,
-        degree: obj.degree,
-        id: obj.id,
-      });
-  }
 
   render() {
     return (
@@ -90,28 +58,28 @@ class EducationForm extends React.Component {
           onChange={this.handleSchoolChange}
           type="text"
           id="school"
-          value={this.state.school}
+          value={this.props.editing === true ? this.props.editedObj.school : this.props.school}
         ></input>
         <label htmlFor="fromYear">From Year:</label>
         <input
           onChange={this.handleFromYearChange}
           type="text"
           id="fromYear"
-          value={this.state.fromYear}
+          value={this.props.editing === true ? this.props.editedObj.fromYear : this.props.fromYear}
         ></input>
         <label htmlFor="toYear">To Year:</label>
         <input
           onChange={this.handleToYearChange}
           type="text"
           id="toYear"
-          value={this.state.toYear}
+          value={this.props.editing === true ? this.props.editedObj.toYear : this.props.toYear}
         ></input>
         <label htmlFor="degree">Qualification / Degree:</label>
         <input
           onChange={this.handleDegreeChange}
           type="text"
           id="degree"
-          value={this.state.degree}
+          value={this.props.editing === true ? this.props.editedObj.degree : this.props.degree}
         ></input>
         <div className="cardBtns">
           <button type="submit">Add</button>
