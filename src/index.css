@@ -1,3 +1,5 @@
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +9,7 @@
 html, body {
     width: 100%;
     height: 100%;
+    background: beige;
 }
 
 #root {
@@ -14,16 +17,15 @@ html, body {
 }
 
 .App {
-
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-rows: 50px 1fr 50px;
+
 }
 
 .nav {
-    margin: 10px 0;
+    width: 100%;
+    background: royalblue;
 }
 
 .mainWrapper {
@@ -35,6 +37,16 @@ html, body {
     align-items: center;
 }
 
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -43,10 +55,29 @@ form {
     padding: 10px;
 }
 
+form > label {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+form > input {
+    padding: 5px 0;
+}
+
+
 .forms {
     position: relative;
     width: 100%;
-    height: 80%; 
+    height: 100%; 
+}
+
+.cardBtns {
+    margin: 10px 0;
+}
+
+.cardBtns > button {
+    margin: 10px;
 }
 
 .activeForm {
@@ -59,6 +90,7 @@ form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    transition: opacity 0.5s ease;
 }
 
 .inactiveForm {
@@ -84,12 +116,12 @@ form {
     overflow: auto;
 }
 
-.activeEducationForm{
-    width: 250px;
-    height: 250px;
+.activeEducationForm {
+    width: 500px;
+    height: 500px;
     position: absolute;
-    top: calc(50% - (250px/2));
-    left: calc(50% - (250px/2));
+    top: calc(50% - (500px/2));
+    left: calc(50% - (500px/2));
     background: white;
 }
 
@@ -112,18 +144,24 @@ form {
 .educationSection, .workSection {
     display: flex;
     flex-direction: column;
+    gap: 30px;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    justify-content: center;
 }
 
 .eduCard, .workCard {
-    border: 1px solid black;
+    background: whitesmoke;
+    box-shadow: gray 5px 5px 5px 5px;
+    width: 50%;
+    height: 100%;
     border-radius: 10px;
-    margin: 10px;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+}
+
+.eduCard button {
+    margin: 10px;
 }

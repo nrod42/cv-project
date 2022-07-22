@@ -8,15 +8,17 @@ class Work extends React.Component {
     super(props);
     this.state = {
       isActive: true,
+      workData: [],
       workCards: [],
-      cardInfo: {
-        company: "",
-        city: "",
-        fromYear: "",
-        toYear: "",
-        role: "",
-        description: "",
-      },
+      company: "",
+      city: "",
+      fromYear: "",
+      toYear: "",
+      role: "",
+      description: "",
+      id: uniqid(),
+      editing: false,
+      editedObj: "",
     };
 
     this.toggleWorkForm = this.toggleWorkForm.bind(this);

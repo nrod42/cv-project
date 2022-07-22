@@ -15,21 +15,18 @@ class Education extends React.Component {
       toYear: "",
       degree: "",
       id: uniqid(),
-      editing: false,
-      editedObj: "",
     };
 
     this.toggleEducationForm = this.toggleEducationForm.bind(this);
     this.addEduObj = this.addEduObj.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.createCards = this.createCards.bind(this);
-    this.clearForm=this.clearForm.bind(this)
+    this.clearForm = this.clearForm.bind(this);
     this.findObj = this.findObj.bind(this);
-    this.handleSchoolChange = this.handleSchoolChange.bind(this)
-    this.handleFromYearChange = this.handleFromYearChange.bind(this)
-    this.handleToYearChange = this.handleToYearChange.bind(this)
-    this.handleDegreeChange = this.handleDegreeChange.bind(this)
-    this.setEditing = this.setEditing.bind(this)
+    this.handleSchoolChange = this.handleSchoolChange.bind(this);
+    this.handleFromYearChange = this.handleFromYearChange.bind(this);
+    this.handleToYearChange = this.handleToYearChange.bind(this);
+    this.handleDegreeChange = this.handleDegreeChange.bind(this);
   }
 
   handleSchoolChange = (school) => {
@@ -56,12 +53,6 @@ class Education extends React.Component {
     });
   };
 
-  setEditing = (state) => {
-    this.setState({
-      editing: state,
-    });
-  };
-
   createCards() {
     let newState = this.state.eduData.map((obj) => (
       <EducationCard
@@ -69,8 +60,17 @@ class Education extends React.Component {
         deleteCard={this.deleteCard}
         findObj={this.findObj}
         cardInfo={obj}
+        school={this.state.school}
+        fromYear={this.state.fromYear}
+        toYear={this.state.toYear}
+        degree={this.state.degree}
+        setSchool={this.handleSchoolChange}
+        setFromYear={this.handleFromYearChange}
+        setToYear={this.handleToYearChange}
+        setDegree={this.handleDegreeChange}
       />
     ));
+    // let orderedState = newState.sort((a,b))
     this.setState({
       educationCards: newState,
     });
@@ -78,35 +78,38 @@ class Education extends React.Component {
 
   addEduObj() {
     this.setState({
-      eduData: [...this.state.eduData, {
-        school: this.state.school,
-        fromYear: this.state.fromYear,
-        toYear: this.state.toYear,
-        degree: this.state.degree,
-        id: this.state.id,
-      }],
+      eduData: [
+        ...this.state.eduData,
+        {
+          school: this.state.school,
+          fromYear: this.state.fromYear,
+          toYear: this.state.toYear,
+          degree: this.state.degree,
+          id: this.state.id,
+        },
+      ],
     });
   }
 
-  
-clearForm () {
-  this.setState({
-    school: "",
-    fromYear: "",
-    toYear: "",
-    degree: "",
-    id: uniqid(),
-  })
-
-}
-  findObj(id) {
-    this.setEditing(true)
+  clearForm() {
     this.setState({
-      editedObj: this.state.eduData.find((eduObj) => eduObj.id === id),
-    })
+      school: "",
+      fromYear: "",
+      toYear: "",
+      degree: "",
+      id: uniqid(),
+    });
   }
 
-
+  findObj(id) {
+    let editedObj = this.state.eduData.find((eduObj) => eduObj.id === id);
+    this.setState({
+      school: editedObj.school,
+      fromYear: editedObj.fromYear,
+      toYear: editedObj.toYear,
+      degree: editedObj.degree,
+    });
+  }
 
   async deleteCard(id) {
     await this.setState({
@@ -116,7 +119,6 @@ clearForm () {
   }
 
   toggleEducationForm = () => {
-    this.clearForm();
     this.setState({
       isActive: !this.state.isActive,
     });
@@ -127,6 +129,9 @@ clearForm () {
       <div className="educationSection">
         <h2>Education Info</h2>
         {this.state.educationCards}
+        <div className="addMoreBtn">
+          <button onClick={this.toggleEducationForm}>Add More</button>
+        </div>
         <div
           className={
             this.state.isActive
@@ -140,21 +145,16 @@ clearForm () {
             createCards={this.createCards}
             deleteCard={this.deleteCard}
             clearForm={this.clearForm}
-            school = {this.state.school}
-            fromYear = {this.state.fromYear}
-            toYear = {this.state.toYear}
-            degree = {this.state.degree}
+            school={this.state.school}
+            fromYear={this.state.fromYear}
+            toYear={this.state.toYear}
+            degree={this.state.degree}
+            editedObj={this.state.editedObj}
             setSchool={this.handleSchoolChange}
             setFromYear={this.handleFromYearChange}
             setToYear={this.handleToYearChange}
             setDegree={this.handleDegreeChange}
-            setEditing={this.setEditing}
-            editing={this.state.editing}
-            editedObj={this.state.editedObj}
           />
-        </div>
-        <div className="addMoreBtn">
-          <button onClick={this.toggleEducationForm}>Add More</button>
         </div>
       </div>
     );

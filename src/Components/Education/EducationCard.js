@@ -14,11 +14,8 @@ class EducationCard extends React.Component {
 
   handleEdit() {
     this.props.toggleForm();
-    this.props.findObj(this.props.cardInfo.id); //returns edited obj;
+    this.props.findObj(this.props.cardInfo.id); //returns edited obj; //and IS working
   }
-
-  fillForm(obj) {}
-  //when edit is clicked, it needs to tell parent the id of the clicked card
 
   render() {
     const { school, fromYear, toYear, degree } = this.props.cardInfo;
@@ -29,7 +26,7 @@ class EducationCard extends React.Component {
           <p>University / School: {school}</p>
           <p>From: {fromYear}</p>
           <p>To: {toYear}</p>
-          <p>Qualification / Degree: {degree}</p>
+          <p>Degree: {degree}</p>
         </div>
         <div>
           <button onClick={this.handleEdit} type="button">
