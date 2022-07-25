@@ -30,7 +30,7 @@ class Education extends React.Component {
     this.setDegree = this.setDegree.bind(this);
     this.setEditActive = this.setEditActive.bind(this);
   }
-  
+
   setSchool = (school) => {
     this.setState({
       school: school,
@@ -63,8 +63,8 @@ class Education extends React.Component {
 
   createCards() {
     let orderedState = this.state.eduData.sort((a, b) => {
-      return new Date(a.fromYear) - new Date(b.fromYear)
-    })
+      return new Date(a.fromYear) - new Date(b.fromYear);
+    });
     let newState = orderedState.map((obj) => (
       <EducationCard
         toggleForm={this.toggleEducationForm}
@@ -120,9 +120,8 @@ class Education extends React.Component {
       toYear: editedObj.toYear,
       degree: editedObj.degree,
       id: editedObj.id,
-    }); 
+    });
   }
-  
 
   async deleteCard(id) {
     await this.setState({

@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "./Components/Navigation";
-import ContactForm from "./Components/ContactForm";
+import ContactForm from "./Components/Contact/ContactForm";
 import Education from "./Components/Education/Education";
 import Work from "./Components/Work/Work";
 
