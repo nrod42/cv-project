@@ -29,14 +29,20 @@ class EducationForm extends React.Component {
 
   async onSubmitForm(e) {
     e.preventDefault();
+
     await this.props.addEduObj();
     this.props.createCards();
     this.props.toggleForm();
     this.props.clearForm();
+    // if (this.props.isEditActive === true) {
+    //   this.props.deleteCard(this.props.id)
+    //   this.props.setEditActive(false)
+    // }
   }
 
   cancelForm = (e) => {
     this.props.toggleForm();
+    this.props.clearForm();
   };
 
   render() {
@@ -69,7 +75,7 @@ class EducationForm extends React.Component {
           type="text"
           id="degree"
           value={this.props.degree}
-        ></input>
+          ></input>
         <div className="cardBtns">
           <button type="submit">Add</button>
           <button onClick={this.cancelForm} type="button">

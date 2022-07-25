@@ -14,7 +14,7 @@ class EducationCard extends React.Component {
 
   handleEdit() {
     this.props.toggleForm();
-    this.props.findObj(this.props.cardInfo.id); //returns edited obj; //and IS working
+    this.props.edit(this.props.cardInfo.id); //returns edited obj and then fills inputs fields with its info;
   }
 
   render() {

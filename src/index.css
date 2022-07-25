@@ -126,11 +126,11 @@ form > input {
 }
 
 .activeWorkForm {
-    width: 250px;
-    height: 375px;
+    width: 700px;
+    height: 600px;
     position: absolute;
-    top: calc(50% - (375px/2));
-    left: calc(50% - (250px/2));
+    top: calc(50% - (600px/2));
+    left: calc(50% - (700px/2));
     background: white;
 }
 

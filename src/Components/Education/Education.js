@@ -8,6 +8,7 @@ class Education extends React.Component {
     super(props);
     this.state = {
       isActive: true,
+      isEditActive: false,
       eduData: [],
       educationCards: [],
       school: "",
@@ -22,55 +23,64 @@ class Education extends React.Component {
     this.deleteCard = this.deleteCard.bind(this);
     this.createCards = this.createCards.bind(this);
     this.clearForm = this.clearForm.bind(this);
-    this.findObj = this.findObj.bind(this);
-    this.handleSchoolChange = this.handleSchoolChange.bind(this);
-    this.handleFromYearChange = this.handleFromYearChange.bind(this);
-    this.handleToYearChange = this.handleToYearChange.bind(this);
-    this.handleDegreeChange = this.handleDegreeChange.bind(this);
+    this.edit = this.edit.bind(this);
+    this.setSchool = this.setSchool.bind(this);
+    this.setFromYear = this.setFromYear.bind(this);
+    this.setToYear = this.setToYear.bind(this);
+    this.setDegree = this.setDegree.bind(this);
+    this.setEditActive = this.setEditActive.bind(this);
   }
-
-  handleSchoolChange = (school) => {
+  
+  setSchool = (school) => {
     this.setState({
       school: school,
     });
   };
 
-  handleFromYearChange = (year) => {
+  setFromYear = (year) => {
     this.setState({
       fromYear: year,
     });
   };
 
-  handleToYearChange = (year) => {
+  setToYear = (year) => {
     this.setState({
       toYear: year,
     });
   };
 
-  handleDegreeChange = (degree) => {
+  setDegree = (degree) => {
     this.setState({
       degree: degree,
     });
   };
 
+  setEditActive = (status) => {
+    this.setState({
+      isEditActive: status,
+    });
+  };
+
   createCards() {
-    let newState = this.state.eduData.map((obj) => (
+    let orderedState = this.state.eduData.sort((a, b) => {
+      return new Date(a.fromYear) - new Date(b.fromYear)
+    })
+    let newState = orderedState.map((obj) => (
       <EducationCard
         toggleForm={this.toggleEducationForm}
         deleteCard={this.deleteCard}
-        findObj={this.findObj}
+        edit={this.edit}
         cardInfo={obj}
         school={this.state.school}
         fromYear={this.state.fromYear}
         toYear={this.state.toYear}
         degree={this.state.degree}
-        setSchool={this.handleSchoolChange}
-        setFromYear={this.handleFromYearChange}
-        setToYear={this.handleToYearChange}
-        setDegree={this.handleDegreeChange}
+        setSchool={this.setSchool}
+        setFromYear={this.setFromYear}
+        setToYear={this.setToYear}
+        setDegree={this.setDegree}
       />
     ));
-    // let orderedState = newState.sort((a,b))
     this.setState({
       educationCards: newState,
     });
@@ -101,15 +111,18 @@ class Education extends React.Component {
     });
   }
 
-  findObj(id) {
+  edit(id) {
     let editedObj = this.state.eduData.find((eduObj) => eduObj.id === id);
     this.setState({
+      isEditActive: true,
       school: editedObj.school,
       fromYear: editedObj.fromYear,
       toYear: editedObj.toYear,
       degree: editedObj.degree,
-    });
+      id: editedObj.id,
+    }); 
   }
+  
 
   async deleteCard(id) {
     await this.setState({
@@ -145,15 +158,18 @@ class Education extends React.Component {
             createCards={this.createCards}
             deleteCard={this.deleteCard}
             clearForm={this.clearForm}
+            isEditActive={this.state.isEditActive}
             school={this.state.school}
             fromYear={this.state.fromYear}
             toYear={this.state.toYear}
             degree={this.state.degree}
+            id={this.state.id}
             editedObj={this.state.editedObj}
-            setSchool={this.handleSchoolChange}
-            setFromYear={this.handleFromYearChange}
-            setToYear={this.handleToYearChange}
-            setDegree={this.handleDegreeChange}
+            setSchool={this.setSchool}
+            setFromYear={this.setFromYear}
+            setToYear={this.setToYear}
+            setDegree={this.setDegree}
+            setEditActive={this.setEditActive}
           />
         </div>
       </div>
