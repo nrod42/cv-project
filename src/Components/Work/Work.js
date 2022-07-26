@@ -10,7 +10,6 @@ class Work extends React.Component {
       isActive: true,
       isEditActive: false,
       workData: [],
-      workCards: [],
       company: "",
       city: "",
       fromYear: "",
@@ -101,9 +100,7 @@ class Work extends React.Component {
         setDescription={this.setDescription}
       />
     ));
-    this.setState({
-      workCards: newState,
-    });
+    this.props.setWorkCards(newState);
   }
 
   addWorkObj() {
@@ -166,7 +163,7 @@ class Work extends React.Component {
     return (
       <div className="workSection">
         <h2>Work Info</h2>
-        {this.state.workCards}
+        {this.props.workCards}
         <div className="addMoreBtn">
           <button onClick={this.toggleWorkForm}>Add More</button>
         </div>

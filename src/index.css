@@ -104,7 +104,8 @@ form > input {
     height: 0;
 }
 
-.activeEducationForm, .activeWorkForm {
+.activeContactForm, .activeEducationForm, .activeWorkForm {
+    background: white;
     border: 1px solid black;
     border-radius: 10px;
     position: absolute;
@@ -116,32 +117,35 @@ form > input {
     overflow: auto;
 }
 
+.activeContactForm {
+    width: 500px;
+    height: 800px;
+    top: calc(50% - (800px/2));
+    left: calc(50% - (500px/2));
+}
+
 .activeEducationForm {
     width: 500px;
     height: 500px;
-    position: absolute;
     top: calc(50% - (500px/2));
     left: calc(50% - (500px/2));
-    background: white;
 }
 
 .activeWorkForm {
     width: 700px;
     height: 600px;
-    position: absolute;
     top: calc(50% - (600px/2));
     left: calc(50% - (700px/2));
-    background: white;
 }
 
-.inactiveEducationForm, .inactiveWorkForm{
+.inactiveContactForm, .inactiveEducationForm, .inactiveWorkForm{
     height: 0;
     opacity: 0;
     visibility: hidden;
     overflow: hidden;
 }
 
-.educationSection, .workSection {
+.contactSection, .educationSection, .workSection, .reviewSection {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -149,7 +153,7 @@ form > input {
     justify-content: center;
 }
 
-.eduCard, .workCard {
+.contactCard, .eduCard, .workCard {
     background: whitesmoke;
     box-shadow: gray 5px 5px 5px 5px;
     width: 50%;

@@ -10,7 +10,6 @@ class Education extends React.Component {
       isActive: true,
       isEditActive: false,
       eduData: [],
-      educationCards: [],
       school: "",
       fromYear: "",
       toYear: "",
@@ -81,9 +80,7 @@ class Education extends React.Component {
         setDegree={this.setDegree}
       />
     ));
-    this.setState({
-      educationCards: newState,
-    });
+    this.props.setEducationCards(newState);
   }
 
   addEduObj() {
@@ -140,7 +137,7 @@ class Education extends React.Component {
     return (
       <div className="educationSection">
         <h2>Education Info</h2>
-        {this.state.educationCards}
+        {this.props.educationCards}
         <div className="addMoreBtn">
           <button onClick={this.toggleEducationForm}>Add More</button>
         </div>
@@ -163,7 +160,6 @@ class Education extends React.Component {
             toYear={this.state.toYear}
             degree={this.state.degree}
             id={this.state.id}
-            editedObj={this.state.editedObj}
             setSchool={this.setSchool}
             setFromYear={this.setFromYear}
             setToYear={this.setToYear}
