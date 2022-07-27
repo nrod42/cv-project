@@ -46,12 +46,12 @@ class WorkForm extends React.Component {
     }
     await this.props.addWorkObj();
     this.props.createCards();
-    this.props.toggleForm();
+    this.props.toggleWorkForm();
     this.props.clearForm();
   }
 
   cancelForm = (e) => {
-    this.props.toggleForm();
+    this.props.toggleWorkForm();
     this.props.clearForm();
   };
 

@@ -35,12 +35,12 @@ class EducationForm extends React.Component {
     }
     await this.props.addEduObj();
     this.props.createCards();
-    this.props.toggleForm();
+    this.props.toggleEduForm();
     this.props.clearForm();
   }
 
   cancelForm = (e) => {
-    this.props.toggleForm();
+    this.props.toggleEduForm();
     this.props.clearForm();
   };
 

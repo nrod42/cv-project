@@ -7,7 +7,6 @@ class Education extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: true,
       isEditActive: false,
       eduData: [],
       school: "",
@@ -17,7 +16,6 @@ class Education extends React.Component {
       id: uniqid(),
     };
 
-    this.toggleEducationForm = this.toggleEducationForm.bind(this);
     this.addEduObj = this.addEduObj.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.createCards = this.createCards.bind(this);
@@ -66,7 +64,7 @@ class Education extends React.Component {
     });
     let newState = orderedState.map((obj) => (
       <EducationCard
-        toggleForm={this.toggleEducationForm}
+        toggleEduForm={this.props.toggleEduForm}
         deleteCard={this.deleteCard}
         edit={this.edit}
         cardInfo={obj}
@@ -127,29 +125,23 @@ class Education extends React.Component {
     this.createCards();
   }
 
-  toggleEducationForm = () => {
-    this.setState({
-      isActive: !this.state.isActive,
-    });
-  };
-
   render() {
     return (
       <div className="educationSection">
         <h2>Education Info</h2>
         {this.props.educationCards}
         <div className="addMoreBtn">
-          <button onClick={this.toggleEducationForm}>Add More</button>
+          <button onClick={this.props.toggleEduForm}>Add More</button>
         </div>
         <div
           className={
-            this.state.isActive
+            this.props.isEduFormActive
               ? "activeEducationForm"
               : "inactiveEducationForm"
           }
         >
           <EducationForm
-            toggleForm={this.toggleEducationForm}
+            toggleEduForm={this.props.toggleEduForm}
             addEduObj={this.addEduObj}
             createCards={this.createCards}
             deleteCard={this.deleteCard}

@@ -7,7 +7,6 @@ class Work extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: true,
       isEditActive: false,
       workData: [],
       company: "",
@@ -19,7 +18,6 @@ class Work extends React.Component {
       id: uniqid(),
     };
 
-    this.toggleWorkForm = this.toggleWorkForm.bind(this);
     this.addWorkObj = this.addWorkObj.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this.createCards = this.createCards.bind(this);
@@ -82,7 +80,7 @@ class Work extends React.Component {
     });
     let newState = orderedState.map((obj) => (
       <WorkCard
-        toggleForm={this.toggleWorkForm}
+        toggleWorkForm={this.props.toggleWorkForm}
         deleteCard={this.deleteCard}
         edit={this.edit}
         cardInfo={obj}
@@ -153,27 +151,21 @@ class Work extends React.Component {
     this.createCards();
   }
 
-  toggleWorkForm = () => {
-    this.setState({
-      isActive: !this.state.isActive,
-    });
-  };
-
   render() {
     return (
       <div className="workSection">
         <h2>Work Info</h2>
         {this.props.workCards}
         <div className="addMoreBtn">
-          <button onClick={this.toggleWorkForm}>Add More</button>
+          <button onClick={this.props.toggleWorkForm}>Add More</button>
         </div>
         <div
           className={
-            this.state.isActive ? "activeWorkForm" : "inactiveWorkForm"
+            this.props.isWorkFormActive ? "activeWorkForm" : "inactiveWorkForm"
           }
         >
           <WorkForm
-            toggleForm={this.toggleWorkForm}
+            toggleWorkForm={this.props.toggleWorkForm}
             addWorkObj={this.addWorkObj}
             createCards={this.createCards}
             deleteCard={this.deleteCard}

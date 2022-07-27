@@ -119,8 +119,8 @@ form > input {
 
 .activeContactForm {
     width: 500px;
-    height: 800px;
-    top: calc(50% - (800px/2));
+    height: 750px;
+    top: calc(50% - (750px/2));
     left: calc(50% - (500px/2));
 }
 
@@ -166,6 +166,6 @@ form > input {
     justify-content: space-between;
 }
 
-.eduCard button {
+.eduCard button, .workCard button {
     margin: 10px;
 }

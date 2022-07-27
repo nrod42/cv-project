@@ -10,21 +10,26 @@ class App extends React.Component {
     super();
 
     this.state = {
-      currentPage: {
-        isContactActive: true,
-        isEducationActive: false,
-        isWorkActive: false,
-        isReviewActive: false,
-      },
+      isContactActive: true,
+      isEducationActive: false,
+      isWorkActive: false,
+      isReviewActive: false,
+      isContactFormActive: true,
+      isEduFormActive: true,
+      isWorkFormActive: true,
       contactCard: "",
       educationCards: [],
       workCards: [],
     };
+    
     this.setContactCard = this.setContactCard.bind(this);
     this.setEducationCards = this.setEducationCards.bind(this);
     this.setWorkCards = this.setWorkCards.bind(this);
     this.prevPage = this.prevPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
+    this.toggleContactForm = this.toggleContactForm.bind(this);
+    this.toggleEduForm = this.toggleEduForm.bind(this);
+    this.toggleWorkForm = this.toggleWorkForm.bind(this);
   }
 
   setContactCard(card) {
@@ -46,53 +51,59 @@ class App extends React.Component {
   }
 
   nextPage() {
-    if (this.state.currentPage.isContactActive) {
+    if (this.state.isContactActive) {
       this.setState({
-        currentPage: {
-          isContactActive: !this.state.currentPage.isContactActive,
-          isEducationActive: !this.state.currentPage.isEducationActive,
-        },
+        isContactActive: !this.state.isContactActive,
+        isEducationActive: !this.state.isEducationActive,
       });
-    } else if (this.state.currentPage.isEducationActive) {
+    } else if (this.state.isEducationActive) {
       this.setState({
-        currentPage: {
-          isEducationActive: !this.state.currentPage.isEducationActive,
-          isWorkActive: !this.state.currentPage.isWorkActive,
-        },
+        isEducationActive: !this.state.isEducationActive,
+        isWorkActive: !this.state.isWorkActive,
       });
-    } else if (this.state.currentPage.isWorkActive) {
+    } else if (this.state.isWorkActive) {
       this.setState({
-        currentPage: {
-          isWorkActive: !this.state.currentPage.isWorkActive,
-          isReviewActive: !this.state.currentPage.isReviewActive,
-        },
+        isWorkActive: !this.state.isWorkActive,
+        isReviewActive: !this.state.isReviewActive,
       });
     }
   }
 
   prevPage() {
-    if (this.state.currentPage.isReviewActive) {
+    if (this.state.isReviewActive) {
       this.setState({
-        currentPage: {
-          isReviewActive: !this.state.currentPage.isReviewActive,
-          isWorkActive: !this.state.currentPage.isWorkActive,
-        },
+        isReviewActive: !this.state.isReviewActive,
+        isWorkActive: !this.state.isWorkActive,
       });
-    } else if (this.state.currentPage.isWorkActive) {
+    } else if (this.state.isWorkActive) {
       this.setState({
-        currentPage: {
-          isWorkActive: !this.state.currentPage.isWorkActive,
-          isEducationActive: !this.state.currentPage.isEducationActive,
-        },
+        isWorkActive: !this.state.isWorkActive,
+        isEducationActive: !this.state.isEducationActive,
       });
-    } else if (this.state.currentPage.isEducationActive) {
+    } else if (this.state.isEducationActive) {
       this.setState({
-        currentPage: {
-          isEducationActive: !this.state.currentPage.isEducationActive,
-          isContactActive: !this.state.currentPage.isContactActive,
-        },
+        isEducationActive: !this.state.isEducationActive,
+        isContactActive: !this.state.isContactActive,
       });
     }
+  }
+
+  toggleContactForm = () => {
+    this.setState({
+      isContactFormActive: !this.state.isContactFormActive,
+    })
+  };
+
+  toggleEduForm = () => { 
+    this.setState({
+      isEduFormActive: !this.state.isEduFormActive,
+    })
+  }
+
+  toggleWorkForm = () => {
+    this.setState({
+      isWorkFormActive: !this.state.isWorkFormActive,
+    })
   }
 
   render() {
@@ -104,7 +115,7 @@ class App extends React.Component {
             <div
               className={`contactSectionWrapper
                 ${
-                  this.state.currentPage.isContactActive
+                  this.state.isContactActive
                     ? "activeForm"
                     : "inactiveForm"
                 }`}
@@ -112,12 +123,14 @@ class App extends React.Component {
               <Contact
                 contactCard={this.state.contactCard}
                 setContactCard={this.setContactCard}
+                toggleContactForm={this.toggleContactForm}
+                isContactFormActive={this.state.isContactFormActive}
               />
             </div>
             <div
               className={`educationSectionWrapper
                 ${
-                  this.state.currentPage.isEducationActive
+                  this.state.isEducationActive
                     ? "activeForm"
                     : "inactiveForm"
                 }`}
@@ -125,12 +138,14 @@ class App extends React.Component {
               <Education
                 educationCards={this.state.educationCards}
                 setEducationCards={this.setEducationCards}
+                toggleEduForm={this.toggleEduForm}
+                isEduFormActive={this.state.isEduFormActive}
               />
             </div>
             <div
               className={`workSectionWrapper
                 ${
-                  this.state.currentPage.isWorkActive
+                  this.state.isWorkActive
                     ? "activeForm"
                     : "inactiveForm"
                 }`}
@@ -138,11 +153,14 @@ class App extends React.Component {
               <Work
                 workCards={this.state.workCards}
                 setWorkCards={this.setWorkCards}
+                toggleWorkForm={this.toggleWorkForm}
+                isWorkFormActive={this.state.isWorkFormActive}
+
               />
             </div>
             <div
               className={`reviewSectionWrapper ${
-                this.state.currentPage.isReviewActive
+                this.state.isReviewActive
                   ? "activeForm"
                   : "inactiveForm"
               }`}
@@ -151,6 +169,9 @@ class App extends React.Component {
                 contactCard={this.state.contactCard}
                 educationCards={this.state.educationCards}
                 workCards={this.state.workCards}
+                // isContactFormActive={this.state.isContactFormActive}
+                // isEduFormActive={this.state.isEduFormActive}
+                // isWorkFormActive={this.state.isWorkFormActive}
               />
             </div>
           </div>

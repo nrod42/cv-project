@@ -55,13 +55,12 @@ class ContactForm extends React.Component {
 
   onSubmitForm(e) {
     e.preventDefault();
-
     this.props.createCard();
-    this.props.toggleForm();
+    this.props.toggleContactForm();
   }
 
   cancelForm = (e) => {
-    this.props.toggleForm();
+    this.props.toggleContactForm();
   };
 
   render() {

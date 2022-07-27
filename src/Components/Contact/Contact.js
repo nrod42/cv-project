@@ -6,7 +6,6 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: true,
       firstName: "",
       lastName: "",
       addr1: "",
@@ -18,7 +17,6 @@ class Contact extends React.Component {
       phone: "",
     };
 
-    this.toggleContactForm = this.toggleContactForm.bind(this);
     this.createCard = this.createCard.bind(this);
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
@@ -88,7 +86,7 @@ class Contact extends React.Component {
   createCard() {
     this.props.setContactCard(
       <ContactCard
-        toggleForm={this.toggleContactForm}
+        toggleContactForm={this.props.toggleContactForm}
         firstName={this.state.firstName}
         lastName={this.state.lastName}
         addr1={this.state.addr1}
@@ -111,12 +109,6 @@ class Contact extends React.Component {
     );
   }
 
-  toggleContactForm = () => {
-    this.setState({
-      isActive: !this.state.isActive,
-    });
-  };
-
   clearForm() {
     this.setState({
       firstName: "",
@@ -138,11 +130,11 @@ class Contact extends React.Component {
         {this.props.contactCard}
         <div
           className={
-            this.state.isActive ? "activeContactForm" : "inactiveContactForm"
+            this.props.isContactFormActive ? "activeContactForm" : "inactiveContactForm"
           }
         >
           <ContactForm
-            toggleForm={this.toggleContactForm}
+            toggleContactForm={this.props.toggleContactForm}
             createCard={this.createCard}
             firstName={this.state.firstName}
             lastName={this.state.lastName}
