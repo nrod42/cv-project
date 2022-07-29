@@ -21,7 +21,7 @@ class App extends React.Component {
       educationCards: [],
       workCards: [],
     };
-    
+
     this.setContactCard = this.setContactCard.bind(this);
     this.setEducationCards = this.setEducationCards.bind(this);
     this.setWorkCards = this.setWorkCards.bind(this);
@@ -91,95 +91,93 @@ class App extends React.Component {
   toggleContactForm = () => {
     this.setState({
       isContactFormActive: !this.state.isContactFormActive,
-    })
+    });
   };
 
-  toggleEduForm = () => { 
+  toggleEduForm = () => {
     this.setState({
       isEduFormActive: !this.state.isEduFormActive,
-    })
-  }
+    });
+  };
 
   toggleWorkForm = () => {
     this.setState({
       isWorkFormActive: !this.state.isWorkFormActive,
-    })
-  }
+    });
+  };
 
   render() {
     return (
       <div className="App">
         <Navigation />
         <div className="mainWrapper">
-          <div className="forms">
-            <div
-              className={`contactSectionWrapper
-                ${
-                  this.state.isContactActive
-                    ? "activeForm"
-                    : "inactiveForm"
-                }`}
-            >
-              <Contact
-                contactCard={this.state.contactCard}
-                setContactCard={this.setContactCard}
-                toggleContactForm={this.toggleContactForm}
-                isContactFormActive={this.state.isContactFormActive}
-              />
-            </div>
-            <div
-              className={`educationSectionWrapper
-                ${
-                  this.state.isEducationActive
-                    ? "activeForm"
-                    : "inactiveForm"
-                }`}
-            >
-              <Education
-                educationCards={this.state.educationCards}
-                setEducationCards={this.setEducationCards}
-                toggleEduForm={this.toggleEduForm}
-                isEduFormActive={this.state.isEduFormActive}
-              />
-            </div>
-            <div
-              className={`workSectionWrapper
-                ${
-                  this.state.isWorkActive
-                    ? "activeForm"
-                    : "inactiveForm"
-                }`}
-            >
-              <Work
-                workCards={this.state.workCards}
-                setWorkCards={this.setWorkCards}
-                toggleWorkForm={this.toggleWorkForm}
-                isWorkFormActive={this.state.isWorkFormActive}
-
-              />
-            </div>
-            <div
-              className={`reviewSectionWrapper ${
-                this.state.isReviewActive
-                  ? "activeForm"
-                  : "inactiveForm"
-              }`}
-            >
-              <Review
-                contactCard={this.state.contactCard}
-                educationCards={this.state.educationCards}
-                workCards={this.state.workCards}
-                // isContactFormActive={this.state.isContactFormActive}
-                // isEduFormActive={this.state.isEduFormActive}
-                // isWorkFormActive={this.state.isWorkFormActive}
-              />
-            </div>
+          <div
+            className={
+              this.state.isContactActive ? "activeSection" : "inactiveSection"
+            }
+          >
+            <Contact
+              contactCard={this.state.contactCard}
+              setContactCard={this.setContactCard}
+              toggleContactForm={this.toggleContactForm}
+              isContactFormActive={this.state.isContactFormActive}
+            />
           </div>
-          <div className="formNavBtns">
-            <button onClick={this.prevPage}>Previous</button>
-            <button onClick={this.nextPage}>Next</button>
+          <div
+            className={
+              this.state.isEducationActive ? "activeSection" : "inactiveSection"
+            }
+          >
+            <Education
+              educationCards={this.state.educationCards}
+              setEducationCards={this.setEducationCards}
+              toggleEduForm={this.toggleEduForm}
+              isEduFormActive={this.state.isEduFormActive}
+            />
+          </div>
+          <div
+            className={
+              this.state.isWorkActive ? "activeSection" : "inactiveSection"
+            }
+          >
+            <Work
+              workCards={this.state.workCards}
+              setWorkCards={this.setWorkCards}
+              toggleWorkForm={this.toggleWorkForm}
+              isWorkFormActive={this.state.isWorkFormActive}
+            />
+          </div>
+          <div
+            className={
+              this.state.isReviewActive ? "activeSection" : "inactiveSection"
+            }
+          >
+            <Review
+              contactCard={this.state.contactCard}
+              educationCards={this.state.educationCards}
+              workCards={this.state.workCards}
+              // isContactFormActive={this.state.isContactFormActive}
+              // isEduFormActive={this.state.isEduFormActive}
+              // isWorkFormActive={this.state.isWorkFormActive}
+            />
           </div>
         </div>
+        <div className="formNavBtns">
+          <button
+            className={this.state.isContactActive ? "hiddenBtn" : null}
+            onClick={this.prevPage}
+          >
+            Previous
+          </button>
+          <button
+            className={this.state.isReviewActive ? "hiddenBtn" : null}
+            onClick={this.nextPage}
+          >
+            Next
+          </button>
+        </div>
+
+        <footer>Footer</footer>
       </div>
     );
   }

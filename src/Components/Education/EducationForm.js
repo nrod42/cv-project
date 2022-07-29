@@ -47,39 +47,53 @@ class EducationForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.onSubmitForm}>
-        <label htmlFor="school">University / School:</label>
-        <input
-          onChange={this.handleSchoolChange}
-          type="text"
-          id="school"
-          value={this.props.school}
-        ></input>
-        <label htmlFor="fromYear">From Year:</label>
-        <input
-          onChange={this.handleFromYearChange}
-          type="date"
-          id="fromYear"
-          value={this.props.fromYear}
-        ></input>
-        <label htmlFor="toYear">To Year:</label>
-        <input
-          onChange={this.handleToYearChange}
-          type="date"
-          id="toYear"
-          value={this.props.toYear}
-        ></input>
-        <label htmlFor="degree">Degree:</label>
-        <input
-          onChange={this.handleDegreeChange}
-          type="text"
-          id="degree"
-          value={this.props.degree}
-        ></input>
-        <div className="cardBtns">
-          <button type="submit">Add</button>
-          <button onClick={this.cancelForm} type="button">
-            Cancel
-          </button>
+        <div className="eduFormContainer">
+          <div className="inputDiv doubleInput">
+            <label htmlFor="school">University / School:</label>
+            <input
+              onChange={this.handleSchoolChange}
+              type="text"
+              id="school"
+              value={this.props.school}
+            ></input>
+          </div>
+          <div className="inputDiv doubleInput">
+            <label htmlFor="degree">Degree:</label>
+            <input
+              onChange={this.handleDegreeChange}
+              type="text"
+              id="degree"
+              value={this.props.degree}
+            ></input>
+          </div>
+          <div className="inputDiv">
+            <div className="twoLineInputs">
+              <div>
+                <label htmlFor="fromYear">From Year:</label>
+                <input
+                  onChange={this.handleFromYearChange}
+                  type="date"
+                  id="fromYear"
+                  value={this.props.fromYear}
+                ></input>
+              </div>
+              <div>
+                <label htmlFor="toYear">To Year:</label>
+                <input
+                  onChange={this.handleToYearChange}
+                  type="date"
+                  id="toYear"
+                  value={this.props.toYear}
+                ></input>
+              </div>
+            </div>
+          </div>
+          <div className="inputDiv">
+            <button type="submit">Add</button>
+            <button onClick={this.cancelForm} type="button">
+              Cancel
+            </button>
+          </div>
         </div>
       </form>
     );

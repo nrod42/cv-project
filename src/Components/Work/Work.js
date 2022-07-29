@@ -11,6 +11,7 @@ class Work extends React.Component {
       workData: [],
       company: "",
       city: "",
+      addrState: "",
       fromYear: "",
       toYear: "",
       role: "",
@@ -25,6 +26,7 @@ class Work extends React.Component {
     this.edit = this.edit.bind(this);
     this.setCompany = this.setCompany.bind(this);
     this.setCity = this.setCity.bind(this);
+    this.setAddrState = this.setAddrState.bind(this);
     this.setFromYear = this.setFromYear.bind(this);
     this.setToYear = this.setToYear.bind(this);
     this.setRole = this.setRole.bind(this);
@@ -41,6 +43,12 @@ class Work extends React.Component {
   setCity = (city) => {
     this.setState({
       city: city,
+    });
+  };
+
+  setAddrState = (addrState) => {
+    this.setState({
+      addrState: addrState,
     });
   };
 
@@ -86,12 +94,14 @@ class Work extends React.Component {
         cardInfo={obj}
         company={this.state.company}
         city={this.state.city}
+        addrState={this.state.addrState}
         fromYear={this.state.fromYear}
         toYear={this.state.toYear}
         role={this.state.role}
         description={this.state.description}
         setCompany={this.setCompany}
         setCity={this.setCity}
+        setAddrState={this.setAddrState}
         setFromYear={this.setFromYear}
         setToYear={this.setToYear}
         setRole={this.setRole}
@@ -108,6 +118,7 @@ class Work extends React.Component {
         {
           company: this.state.company,
           city: this.state.city,
+          addrState: this.state.addrState,
           fromYear: this.state.fromYear,
           toYear: this.state.toYear,
           role: this.state.role,
@@ -122,6 +133,7 @@ class Work extends React.Component {
     this.setState({
       company: "",
       city: "",
+      addrState: "",
       fromYear: "",
       toYear: "",
       role: "",
@@ -136,6 +148,7 @@ class Work extends React.Component {
       isEditActive: true,
       company: editedObj.company,
       city: editedObj.city,
+      addrState: editedObj.addrState,
       fromYear: editedObj.fromYear,
       toYear: editedObj.toYear,
       role: editedObj.role,
@@ -173,6 +186,7 @@ class Work extends React.Component {
             isEditActive={this.state.isEditActive}
             company={this.state.company}
             city={this.state.city}
+            addrState={this.state.addrState}
             fromYear={this.state.fromYear}
             toYear={this.state.toYear}
             role={this.state.role}
@@ -180,6 +194,7 @@ class Work extends React.Component {
             id={this.state.id}
             setCompany={this.setCompany}
             setCity={this.setCity}
+            setAddrState={this.setAddrState}
             setFromYear={this.setFromYear}
             setToYear={this.setToYear}
             setRole={this.setRole}

@@ -62,6 +62,7 @@ class Education extends React.Component {
     let orderedState = this.state.eduData.sort((a, b) => {
       return new Date(a.fromYear) - new Date(b.fromYear);
     });
+
     let newState = orderedState.map((obj) => (
       <EducationCard
         toggleEduForm={this.props.toggleEduForm}

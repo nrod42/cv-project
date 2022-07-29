@@ -1,7 +1,11 @@
-
+@font-face {
+    font-family: 'Roboto';
+    src: url('./Roboto-Regular.ttf') format('truetype');
+}
 
 * {
     box-sizing: border-box;
+    font-family: 'Roboto';
     margin: 0;
     padding: 0;
 }
@@ -10,6 +14,7 @@ html, body {
     width: 100%;
     height: 100%;
     background: beige;
+    font-size: 18px;
 }
 
 #root {
@@ -17,22 +22,35 @@ html, body {
 }
 
 .App {
+    width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-rows: 50px 1fr 50px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav {
     width: 100%;
     background: royalblue;
+    height: auto;
+}
+
+footer {
+    height: 50px;
 }
 
 .mainWrapper {
+    position: relative;
     width: 100%;
     height: 100%;
+}
+
+.formNavBtns {
+    padding: 10px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -45,127 +63,222 @@ button {
 
 button:hover {
     cursor: pointer;
+    filter: brightness(85%);
+}
+
+.hiddenBtn {
+    opacity: 0;
+    visibility: hidden;
+}
+
+img  {
+    height: 30px;
+    width: 30px;
 }
 
 form {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 40px; 
 }
 
-form > label {
+label {
     font-size: 18px;
     font-weight: bold;
-    margin: 10px 0;
+    padding-right: 5px;
 }
 
-form > input {
-    padding: 5px 0;
+input {
+    padding: 10px;
+    outline: none;
+    border: none;
 }
 
+p {
+    padding: 5px;
+}
 
-.forms {
-    position: relative;
+h2 {
+    margin-top: 30px;
+}
+
+.contactFormContainer, .eduFormContainer, .workFormContainer {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contactFormContainer > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.inputDiv button{
     width: 100%;
-    height: 100%; 
+}
+
+.contactFormContainer .inputDiv {
+    flex-direction: column;
+}
+
+.eduFormContainer > .inputDiv.doubleInput {
+    flex-direction: column;
+}
+
+.twoLineInputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.activeSection {
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    overflow: auto;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inactiveSection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    width: 0;
+}
+
+.contactSection, .educationSection, .workSection {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.reviewSection {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.activeContactForm, .activeEducationForm, .activeWorkForm {
+    background: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+    height: auto;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    overflow: auto;
+    z-index: 2;
+}
+
+.activeContactForm {
+    width: auto;
+    top: 10%;
+}
+
+.activeEducationForm {
+    width: auto;
+    top: 10%;
+}
+
+.activeWorkForm {
+    width: auto;
+    top: 10%;
+}
+
+.inactiveContactForm, .inactiveEducationForm, .inactiveWorkForm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.contactCard, .eduCard, .workCard {
+    background: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    min-width: 200px;
+} 
+
+.contactCardInfo, .eduCardInfo, .workCardInfo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.contactCardInfo > div, .eduCardInfo > div, .workCardInfo > div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cardSubSection {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cardTitle {
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .cardBtns {
-    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cardBtns > button {
     margin: 10px;
 }
 
-.activeForm {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    opacity: 1;
-    visibility: visible;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    transition: opacity 0.5s ease;
-}
-
-.inactiveForm {
-    position: absolute;
-    width: auto;
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 0;
-}
-
-.activeContactForm, .activeEducationForm, .activeWorkForm {
-    background: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 1;
-    visibility: visible;
-    overflow: auto;
-}
-
-.activeContactForm {
-    width: 500px;
-    height: 750px;
-    top: calc(50% - (750px/2));
-    left: calc(50% - (500px/2));
-}
-
-.activeEducationForm {
-    width: 500px;
-    height: 500px;
-    top: calc(50% - (500px/2));
-    left: calc(50% - (500px/2));
-}
-
-.activeWorkForm {
-    width: 700px;
-    height: 600px;
-    top: calc(50% - (600px/2));
-    left: calc(50% - (700px/2));
-}
-
-.inactiveContactForm, .inactiveEducationForm, .inactiveWorkForm{
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-}
-
-.contactSection, .educationSection, .workSection, .reviewSection {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
-}
-
-.contactCard, .eduCard, .workCard {
-    background: whitesmoke;
-    box-shadow: gray 5px 5px 5px 5px;
-    width: 50%;
-    height: 100%;
-    border-radius: 10px;
+.finalSubmitBtn {
     padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.eduCard button, .workCard button {
-    margin: 10px;
+    background-color: purple;
+    color: white;
+    font-size: 1.15rem;
+    border-radius: 0;
 }

@@ -18,25 +18,59 @@ class WorkCard extends React.Component {
   }
 
   render() {
-    const { company, city, fromYear, toYear, role, description } =
+    const { company, city, addrState, fromYear, toYear, role, description } =
       this.props.cardInfo;
 
     return (
       <div className="workCard">
-        <div>
-          <p>Company: {company}</p>
-          <p>City: {city}</p>
-          <p>From Year: {fromYear}</p>
-          <p>To Year: {toYear}</p>
-          <p>Role: {role}</p>
-          <p>Description: {description}</p>
+        <div className="workCardInfo">
+          <div>
+            <p className="cardTitle">Company:</p>
+            <p>{company}</p>
+          </div>
+          <div>
+            <p className="cardTitle">Role:</p>
+            <p>{role}</p>
+          </div>
+          <div>
+            <div className="cardSubSection">
+              <p className="cardTitle">City:</p>
+              <p>{city}</p>
+            </div>
+            <div className="cardSubSection">
+              <p className="cardTitle">State:</p>
+              <p>{addrState}</p>
+            </div>
+          </div>
+          <div>
+            <div className="cardSubSection">
+              <p className="cardTitle">From Year:</p>
+              <p>{fromYear}</p>
+            </div>
+            <div className="cardSubSection">
+              <p className="cardTitle">To Year:</p>
+              <p>{toYear}</p>
+            </div>
+          </div>
+          <div>
+            <p className="cardTitle">Description:</p>
+            <p>{description}</p>
+          </div>
         </div>
-        <div>
-          <button onClick={this.handleEdit} type="button">
-            Edit
+        <div className="cardBtns">
+          <button type="button">
+            <img
+              src={window.location.origin + "/img/edit_icon.svg"}
+              alt="edit button icon"
+              onClick={this.handleEdit}
+            ></img>
           </button>
-          <button onClick={this.handleDelete} type="button">
-            Delete
+          <button type="button">
+            <img
+              src={window.location.origin + "/img/delete_icon.svg"}
+              alt="delete button icon"
+              onClick={this.handleDelete}
+            ></img>
           </button>
         </div>
       </div>

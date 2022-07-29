@@ -22,6 +22,10 @@ class WorkForm extends React.Component {
     this.props.setCity(e.target.value);
   };
 
+  handleAddrStateChange = (e) => {
+    this.props.setAddrState(e.target.value);
+  };
+
   handleFromYearChange = (e) => {
     this.props.setFromYear(e.target.value);
   };
@@ -58,56 +62,78 @@ class WorkForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.onSubmitForm}>
-        <label htmlFor="company">Company:</label>
-        <input
-          onChange={this.handleCompanyChange}
-          type="text"
-          id="company"
-          value={this.props.company}
-        ></input>
-
-        <label htmlFor="city">City:</label>
-        <input
-          onChange={this.handleCityChange}
-          type="text"
-          id="city"
-          value={this.props.city}
-        ></input>
-
-        <label htmlFor="fromYear">From Year:</label>
-        <input
-          onChange={this.handleFromYearChange}
-          type="date"
-          id="fromYear"
-          value={this.props.fromYear}
-        ></input>
-
-        <label htmlFor="toYear">To Year:</label>
-        <input
-          onChange={this.handleToYearChange}
-          type="date"
-          id="toYear"
-          value={this.props.toYear}
-        ></input>
-
-        <label htmlFor="role">Role:</label>
-        <input
-          onChange={this.handleRoleChange}
-          type="text"
-          id="role"
-          value={this.props.role}
-        ></input>
-
-        <label htmlFor="description">
-          Short description of responsibilities:
-        </label>
-        <textarea
-          onChange={this.handleDescriptionChange}
-          id="description"
-          value={this.props.description}
-        ></textarea>
-
-        <div className="cardBtns">
+        <div className="workFormContainer">
+          <div className="inputDiv doubleInput">
+            <label htmlFor="company">Company:</label>
+            <input
+              onChange={this.handleCompanyChange}
+              type="text"
+              id="company"
+              value={this.props.company}
+            ></input>
+          </div>
+          <div className="roleInput inputDiv doubleInput">
+            <label htmlFor="role">Role:</label>
+            <input
+              onChange={this.handleRoleChange}
+              type="text"
+              id="role"
+              value={this.props.role}
+            ></input>
+          </div>
+          <div className="inputDiv">
+            <div>
+              <label htmlFor="city">City:</label>
+              <input
+                onChange={this.handleCityChange}
+                type="text"
+                id="city"
+                value={this.props.city}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="addrState">State:</label>
+              <input
+                onChange={this.handleAddrStateChange}
+                type="text"
+                id="addrState"
+                value={this.props.addrState}
+              ></input>
+            </div>
+          </div>
+          <div className="inputDiv">
+            <div className="twoLineInputs">
+              <div>
+                <label htmlFor="fromYear">From Year:</label>
+                <input
+                  onChange={this.handleFromYearChange}
+                  type="date"
+                  id="fromYear"
+                  value={this.props.fromYear}
+                ></input>
+              </div>
+              <div>
+                <label htmlFor="toYear">To Year:</label>
+                <input
+                  onChange={this.handleToYearChange}
+                  type="date"
+                  id="toYear"
+                  value={this.props.toYear}
+                ></input>
+              </div>
+            </div>
+          </div>
+          <div className="descInput inputDiv">
+            <label htmlFor="description">
+              Short description of responsibilities:
+            </label>
+            <textarea
+              onChange={this.handleDescriptionChange}
+              id="description"
+              value={this.props.description}
+              rows="6"
+            ></textarea>
+          </div>
           <button type="submit">Add</button>
           <button onClick={this.cancelForm} type="button">
             Cancel

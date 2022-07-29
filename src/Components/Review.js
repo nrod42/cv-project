@@ -15,6 +15,9 @@ class Review extends React.Component {
         {this.props.educationCards}
         <h3>Work History: </h3>
         {this.props.workCards}
+        <div>
+          <button className="finalSubmitBtn">Submit</button>
+        </div>
       </div>
     );
   }

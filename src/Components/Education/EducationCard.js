@@ -1,4 +1,5 @@
 import React from "react";
+// import deleteIcon from "."
 
 class EducationCard extends React.Component {
   constructor(props) {
@@ -22,18 +23,40 @@ class EducationCard extends React.Component {
 
     return (
       <div className="eduCard">
-        <div>
-          <p>University / School: {school}</p>
-          <p>From: {fromYear}</p>
-          <p>To: {toYear}</p>
-          <p>Degree: {degree}</p>
+        <div className="eduCardInfo">
+          <div>
+            <p className="cardTitle">University / School:</p>
+            <p> {school}</p>
+          </div>
+          <div>
+            <p className="cardTitle">Degree:</p>
+            <p>{degree}</p>
+          </div>
+          <div>
+            <div className="cardSubSection">
+              <p className="cardTitle">From:</p>
+              <p>{fromYear}</p>
+            </div>
+            <div className="cardSubSection">
+              <p className="cardTitle">To:</p>
+              <p>{toYear}</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <button onClick={this.handleEdit} type="button">
-            Edit
+        <div className="cardBtns">
+          <button type="button">
+            <img
+              src={window.location.origin + "/img/edit_icon.svg"}
+              alt="edit button icon"
+              onClick={this.handleEdit}
+            ></img>
           </button>
-          <button onClick={this.handleDelete} type="button">
-            Delete
+          <button type="button">
+            <img
+              src={window.location.origin + "/img/delete_icon.svg"}
+              alt="delete button icon"
+              onClick={this.handleDelete}
+            ></img>
           </button>
         </div>
       </div>

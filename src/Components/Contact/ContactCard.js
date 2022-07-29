@@ -14,20 +14,58 @@ class ContactCard extends React.Component {
   render() {
     return (
       <div className="contactCard">
-        <div>
-          <p>First Name: {this.props.firstName}</p>
-          <p>Last Name: {this.props.lastName}</p>
-          <p>Address 1: {this.props.addr1}</p>
-          <p>Address 2: {this.props.addr2}</p>
-          <p>City: {this.props.city}</p>
-          <p>State: {this.props.addrState}</p>
-          <p>Zipcode: {this.props.zip}</p>
-          <p>Email: {this.props.email}</p>
-          <p>Phone: {this.props.phone}</p>
+        <div className="contactCardInfo">
+          <div>
+            <div className="cardSubSection">
+              <p className="cardTitle">First Name:</p>
+              <p>{this.props.firstName}</p>
+            </div>
+            <div className="cardSubSection">
+              <p className="cardTitle">Last Name:</p>
+              <p>{this.props.lastName}</p>
+            </div>
+          </div>
+
+          <div className="cardSubSection">
+            <p className="cardTitle">Address 1:</p>
+            <p>{this.props.addr1}</p>
+          </div>
+          <div className="cardSubSection">
+            <p className="cardTitle">Address 2:</p>
+            <p>{this.props.addr2}</p>
+          </div>
+
+          <div>
+            <div className="cardSubSection">
+              <p className="cardTitle">City:</p>
+              <p>{this.props.city}</p>
+            </div>
+            <div className="cardSubSection">
+              <p className="cardTitle">State:</p>
+              <p>{this.props.addrState}</p>
+            </div>
+            <div className="cardSubSection">
+              <p className="cardTitle">Zipcode:</p>
+              <p>{this.props.zip}</p>
+            </div>
+          </div>
+
+          <div>
+            <p className="cardTitle">Email: </p>
+            <p>{this.props.email}</p>
+          </div>
+          <div>
+            <p className="cardTitle">Phone:</p>
+            <p>{this.props.phone}</p>
+          </div>
         </div>
-        <div>
-          <button onClick={this.handleEdit} type="button">
-            Edit
+        <div className="cardBtns">
+          <button type="button">
+            <img
+              src={window.location.origin + "/img/edit_icon.svg"}
+              alt="edit button icon"
+              onClick={this.handleEdit}
+            ></img>
           </button>
         </div>
       </div>

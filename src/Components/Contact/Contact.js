@@ -10,6 +10,7 @@ class Contact extends React.Component {
       lastName: "",
       addr1: "",
       addr2: "",
+      addrState: "",
       city: "",
       state: "",
       zipcode: "",
@@ -22,6 +23,7 @@ class Contact extends React.Component {
     this.setLastName = this.setLastName.bind(this);
     this.setAddr1 = this.setAddr1.bind(this);
     this.setAddr2 = this.setAddr2.bind(this);
+    this.setAddrState = this.setAddrState.bind(this);
     this.setCity = this.setCity.bind(this);
     this.setAddrState = this.setAddrState.bind(this);
     this.setZip = this.setZip.bind(this);
@@ -61,7 +63,7 @@ class Contact extends React.Component {
 
   setAddrState = (state) => {
     this.setState({
-      state: state,
+      addrState: state,
     });
   };
 
@@ -130,7 +132,9 @@ class Contact extends React.Component {
         {this.props.contactCard}
         <div
           className={
-            this.props.isContactFormActive ? "activeContactForm" : "inactiveContactForm"
+            this.props.isContactFormActive
+              ? "activeContactForm"
+              : "inactiveContactForm"
           }
         >
           <ContactForm
