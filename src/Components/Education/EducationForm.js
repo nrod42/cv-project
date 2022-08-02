@@ -1,103 +1,110 @@
 import React from "react";
 
-class EducationForm extends React.Component {
-  constructor(props) {
-    super(props);
+const EducationForm = (props) => {
+  const {
+    deleteCard,
+    isEditActive,
+    setEditActive,
+    addEduObj,
+    createCards,
+    toggleEduForm,
+    clearForm,
+    setSchool,
+    setFromYear,
+    setToYear,
+    setDegree,
+    school,
+    degree,
+    fromYear,
+    toYear,
+    id,
+  } = props;
 
-    this.handleSchoolChange = this.handleSchoolChange.bind(this);
-    this.handleFromYearChange = this.handleFromYearChange.bind(this);
-    this.handleToYearChange = this.handleToYearChange.bind(this);
-    this.handleDegreeChange = this.handleDegreeChange.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
-    this.cancelForm = this.cancelForm.bind(this);
-  }
-  handleSchoolChange = (e) => {
-    this.props.setSchool(e.target.value);
+  const handleSchoolChange = (e) => {
+    setSchool(e.target.value);
   };
 
-  handleFromYearChange = (e) => {
-    this.props.setFromYear(e.target.value);
+  const handleFromYearChange = (e) => {
+    setFromYear(e.target.value);
   };
 
-  handleToYearChange = (e) => {
-    this.props.setToYear(e.target.value);
+  const handleToYearChange = (e) => {
+    setToYear(e.target.value);
   };
 
-  handleDegreeChange = (e) => {
-    this.props.setDegree(e.target.value);
+  const handleDegreeChange = (e) => {
+    setDegree(e.target.value);
   };
 
-  async onSubmitForm(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (this.props.isEditActive === true) {
-      await this.props.deleteCard(this.props.id); //Without await,
-      this.props.setEditActive(false);
+    if (isEditActive === true) {
+      await deleteCard(id); //Without await,
+      setEditActive(false);
     }
-    await this.props.addEduObj();
-    this.props.createCards();
-    this.props.toggleEduForm();
-    this.props.clearForm();
-  }
-
-  cancelForm = (e) => {
-    this.props.toggleEduForm();
-    this.props.clearForm();
+    await addEduObj();
+    createCards();
+    toggleEduForm();
+    clearForm();
   };
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmitForm}>
-        <div className="eduFormContainer">
-          <div className="inputDiv doubleInput">
-            <label htmlFor="school">University / School:</label>
-            <input
-              onChange={this.handleSchoolChange}
-              type="text"
-              id="school"
-              value={this.props.school}
-            ></input>
-          </div>
-          <div className="inputDiv doubleInput">
-            <label htmlFor="degree">Degree:</label>
-            <input
-              onChange={this.handleDegreeChange}
-              type="text"
-              id="degree"
-              value={this.props.degree}
-            ></input>
-          </div>
-          <div className="inputDiv">
-            <div className="twoLineInputs">
-              <div>
-                <label htmlFor="fromYear">From Year:</label>
-                <input
-                  onChange={this.handleFromYearChange}
-                  type="date"
-                  id="fromYear"
-                  value={this.props.fromYear}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="toYear">To Year:</label>
-                <input
-                  onChange={this.handleToYearChange}
-                  type="date"
-                  id="toYear"
-                  value={this.props.toYear}
-                ></input>
-              </div>
+  const cancelForm = (e) => {
+    toggleEduForm();
+    clearForm();
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="eduFormContainer">
+        <div className="inputDiv doubleInput">
+          <label htmlFor="school">University / School:</label>
+          <input
+            onChange={handleSchoolChange}
+            type="text"
+            id="school"
+            value={school}
+          ></input>
+        </div>
+        <div className="inputDiv doubleInput">
+          <label htmlFor="degree">Degree:</label>
+          <input
+            onChange={handleDegreeChange}
+            type="text"
+            id="degree"
+            value={degree}
+          ></input>
+        </div>
+        <div className="inputDiv">
+          <div className="twoLineInputs">
+            <div>
+              <label htmlFor="fromYear">From Year:</label>
+              <input
+                onChange={handleFromYearChange}
+                type="date"
+                id="fromYear"
+                value={fromYear}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="toYear">To Year:</label>
+              <input
+                onChange={handleToYearChange}
+                type="date"
+                id="toYear"
+                value={toYear}
+              ></input>
             </div>
           </div>
-          <div className="inputDiv">
-            <button type="submit">Add</button>
-            <button onClick={this.cancelForm} type="button">
-              Cancel
-            </button>
-          </div>
         </div>
-      </form>
-    );
-  }
-}
+        <div className="inputDiv">
+          <button type="submit">Add</button>
+          <button onClick={cancelForm} type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+};
 
 export default EducationForm;

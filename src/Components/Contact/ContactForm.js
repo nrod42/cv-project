@@ -1,157 +1,158 @@
 import React from "react";
 
-class ContactForm extends React.Component {
-  constructor(props) {
-    super(props);
+const ContactForm = (props) => {
+  const {
+    createCard,
+    toggleContactForm,
+    setFirstName,
+    setLastName,
+    setAddr1,
+    setAddr2,
+    setCity,
+    setAddrState,
+    setZip,
+    setEmail,
+    setPhone,
+    firstName,
+    lastName,
+    addr1,
+    addr2,
+    city,
+    addrState,
+    zip,
+    email,
+    phone,
+  } = props;
 
-    this.handlefFirstName = this.handleFirstName.bind(this);
-    this.handlefLastName = this.handleLastName.bind(this);
-    this.handleAddr1 = this.handleAddr1.bind(this);
-    this.handleAddr2 = this.handleAddr2.bind(this);
-    this.handleCity = this.handleCity.bind(this);
-    this.handleAddrState = this.handleAddrState.bind(this);
-    this.handleZip = this.handleZip.bind(this);
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handlePhone = this.handlePhone.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
-  }
-
-  handleFirstName = (e) => {
-    this.props.setFirstName(e.target.value);
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
   };
 
-  handleLastName = (e) => {
-    this.props.setLastName(e.target.value);
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
   };
 
-  handleAddr1 = (e) => {
-    this.props.setAddr1(e.target.value);
+  const handleAddr1 = (e) => {
+    setAddr1(e.target.value);
   };
 
-  handleAddr2 = (e) => {
-    this.props.setAddr2(e.target.value);
+  const handleAddr2 = (e) => {
+    setAddr2(e.target.value);
   };
 
-  handleCity = (e) => {
-    this.props.setCity(e.target.value);
+  const handleCity = (e) => {
+    setCity(e.target.value);
   };
 
-  handleAddrState = (e) => {
-    this.props.setAddrState(e.target.value);
+  const handleAddrState = (e) => {
+    setAddrState(e.target.value);
   };
 
-  handleZip = (e) => {
-    this.props.setZip(e.target.value);
+  const handleZip = (e) => {
+    setZip(e.target.value);
   };
 
-  handleEmail = (e) => {
-    this.props.setEmail(e.target.value);
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
   };
 
-  handlePhone = (e) => {
-    this.props.setPhone(e.target.value);
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
   };
 
-  onSubmitForm(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createCard();
-    this.props.toggleContactForm();
-  }
+    createCard();
+    toggleContactForm();
+  };
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmitForm}>
-        <div className="contactFormContainer">
-          <div>
-            <div className="inputDiv">
-              <label htmlFor="firstName">First Name:</label>
-              <input
-                onChange={this.handleFirstName}
-                type="text"
-                id="firstName"
-                value={this.props.firstName}
-              ></input>
-            </div>
-            <div className="inputDiv">
-              <label htmlFor="lastName">Last Name:</label>
-              <input
-                onChange={this.handleLastName}
-                type="text"
-                id="lastName"
-                value={this.props.lastName}
-              ></input>
-            </div>
-          </div>
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="contactFormContainer">
+        <div>
           <div className="inputDiv">
-            <label htmlFor="addr1">Address Line 1:</label>
+            <label htmlFor="firstName">First Name:</label>
             <input
-              onChange={this.handleAddr1}
+              onChange={handleFirstName}
               type="text"
-              id="addr1"
-              value={this.props.addr1}
+              id="firstName"
+              value={firstName}
             ></input>
           </div>
           <div className="inputDiv">
-            <label htmlFor="addr2">Address Line 2:</label>
+            <label htmlFor="lastName">Last Name:</label>
             <input
-              onChange={this.handleAddr2}
+              onChange={handleLastName}
               type="text"
-              id="addr2"
-              value={this.props.addr2}
+              id="lastName"
+              value={lastName}
             ></input>
           </div>
-          <div>
-            <div className="inputDiv">
-              <label htmlFor="city">City/Town:</label>
-              <input
-                onChange={this.handleCity}
-                type="text"
-                id="city"
-                value={this.props.city}
-              ></input>
-            </div>
-            <div className="inputDiv">
-              <label htmlFor="addrState">State:</label>
-              <input
-                onChange={this.handleAddrState}
-                type="text"
-                id="addrState"
-                value={this.props.addrState}
-              ></input>
-            </div>
-          </div>
-          <div className="inputDiv">
-            <label htmlFor="zip">Zip Code:</label>
-            <input
-              onChange={this.handleZip}
-              type="text"
-              id="zip"
-              value={this.props.zip}
-            ></input>
-          </div>
-          <div className="inputDiv">
-            <label htmlFor="email">E-mail:</label>
-            <input
-              onChange={this.handleEmail}
-              type={"email"}
-              id="email"
-              value={this.props.email}
-            ></input>
-          </div>
-          <div className="inputDiv">
-            <label htmlFor="phone">Phone Number:</label>
-            <input
-              onChange={this.handlePhone}
-              type="text"
-              id="phone"
-              value={this.props.phone}
-            ></input>
-          </div>
-          <button type="submit">Add</button>
         </div>
-      </form>
-    );
-  }
-}
+        <div className="inputDiv">
+          <label htmlFor="addr1">Address Line 1:</label>
+          <input
+            onChange={handleAddr1}
+            type="text"
+            id="addr1"
+            value={addr1}
+          ></input>
+        </div>
+        <div className="inputDiv">
+          <label htmlFor="addr2">Address Line 2:</label>
+          <input
+            onChange={handleAddr2}
+            type="text"
+            id="addr2"
+            value={addr2}
+          ></input>
+        </div>
+        <div>
+          <div className="inputDiv">
+            <label htmlFor="city">City/Town:</label>
+            <input
+              onChange={handleCity}
+              type="text"
+              id="city"
+              value={city}
+            ></input>
+          </div>
+          <div className="inputDiv">
+            <label htmlFor="addrState">State:</label>
+            <input
+              onChange={handleAddrState}
+              type="text"
+              id="addrState"
+              value={addrState}
+            ></input>
+          </div>
+        </div>
+        <div className="inputDiv">
+          <label htmlFor="zip">Zip Code:</label>
+          <input onChange={handleZip} type="text" id="zip" value={zip}></input>
+        </div>
+        <div className="inputDiv">
+          <label htmlFor="email">E-mail:</label>
+          <input
+            onChange={handleEmail}
+            type={"email"}
+            id="email"
+            value={email}
+          ></input>
+        </div>
+        <div className="inputDiv">
+          <label htmlFor="phone">Phone Number:</label>
+          <input
+            onChange={handlePhone}
+            type="text"
+            id="phone"
+            value={phone}
+          ></input>
+        </div>
+        <button type="submit">Add</button>
+      </div>
+    </form>
+  );
+};
 
 export default ContactForm;
