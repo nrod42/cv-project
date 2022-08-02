@@ -54,7 +54,7 @@ class WorkCard extends React.Component {
           </div>
           <div>
             <p className="cardTitle">Description:</p>
-            <p>{description}</p>
+            <p className=".descrP">{description}</p>
           </div>
         </div>
         <div className="cardBtns">

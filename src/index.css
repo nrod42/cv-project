@@ -33,11 +33,6 @@ html, body {
 .nav {
     width: 100%;
     background: royalblue;
-    height: auto;
-}
-
-footer {
-    height: 50px;
 }
 
 .mainWrapper {
@@ -50,6 +45,7 @@ footer {
     padding: 10px;
     width: 100%;
     display: flex;
+    gap: 50px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -59,16 +55,12 @@ button {
     padding: 10px;
     border: none;
     border-radius: 10px;
+    font-size: 1rem;
 }
 
 button:hover {
     cursor: pointer;
     filter: brightness(85%);
-}
-
-.hiddenBtn {
-    opacity: 0;
-    visibility: hidden;
 }
 
 img  {
@@ -95,14 +87,16 @@ input {
     padding: 10px;
     outline: none;
     border: none;
+    font-size: 1rem;
 }
 
 p {
     padding: 5px;
 }
 
-h2 {
-    margin-top: 30px;
+.hiddenBtn {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .contactFormContainer, .eduFormContainer, .workFormContainer {
@@ -125,10 +119,6 @@ h2 {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
-}
-
-.inputDiv button{
-    width: 100%;
 }
 
 .contactFormContainer .inputDiv {
@@ -168,7 +158,7 @@ h2 {
     width: 0;
 }
 
-.contactSection, .educationSection, .workSection {
+.contactSection, .educationSection, .workSection, .reviewSection {
     height: 100%;
     width: auto;
     display: flex;
@@ -176,15 +166,6 @@ h2 {
     align-items: center;
     gap: 30px;
     padding: 20px;
-}
-
-.reviewSection {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
 }
 
 .activeContactForm, .activeEducationForm, .activeWorkForm {
@@ -200,22 +181,8 @@ h2 {
     opacity: 1;
     visibility: visible;
     overflow: auto;
-    z-index: 2;
-}
-
-.activeContactForm {
-    width: auto;
     top: 10%;
-}
-
-.activeEducationForm {
-    width: auto;
-    top: 10%;
-}
-
-.activeWorkForm {
-    width: auto;
-    top: 10%;
+    z-index: 1;
 }
 
 .inactiveContactForm, .inactiveEducationForm, .inactiveWorkForm {
@@ -281,4 +248,9 @@ h2 {
     color: white;
     font-size: 1.15rem;
     border-radius: 0;
+}
+
+.workCardDesc {
+display: flex;
+flex-wrap: wrap;
 }
