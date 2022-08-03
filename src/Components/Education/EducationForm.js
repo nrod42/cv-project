@@ -2,50 +2,55 @@ import React from "react";
 
 const EducationForm = (props) => {
   const {
-    deleteCard,
-    isEditActive,
-    setEditActive,
-    addEduObj,
-    createCards,
     toggleEduForm,
     clearForm,
+    setEditActive,
+    isEditActive,
     eduInfo,
     setEduInfo,
+    eduArray,
+    setEduArray,
+    // deleteCard,
   } = props;
 
-  const {school, fromYear, toYear, degree, id} = eduInfo;
+  const { school, fromYear, toYear, degree, id } = eduInfo;
+
+  const cancelForm = () => {
+    toggleEduForm();
+    clearForm();
+    if (isEditActive === true) {
+    }
+    setEditActive(false);
+  };
 
   const handleSchoolChange = (e) => {
-    setEduInfo({...eduInfo, school: e.target.value});
+    setEduInfo({ ...eduInfo, school: e.target.value });
   };
 
   const handleFromYearChange = (e) => {
-    setEduInfo({...eduInfo, fromYear: e.target.value});  
+    setEduInfo({ ...eduInfo, fromYear: e.target.value });
   };
 
   const handleToYearChange = (e) => {
-    setEduInfo({...eduInfo, toYear: e.target.value});  
+    setEduInfo({ ...eduInfo, toYear: e.target.value });
   };
 
   const handleDegreeChange = (e) => {
-    setEduInfo({...eduInfo, degree: e.target.value});  
+    setEduInfo({ ...eduInfo, degree: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isEditActive === true) {
-      await deleteCard(id); //Without await,
+      // deleteCard(id);
       setEditActive(false);
     }
-    await addEduObj();
-    createCards();
-    toggleEduForm();
-    clearForm();
-  };
-
-  const cancelForm = (e) => {
-    toggleEduForm();
-    clearForm();
+    setEduArray(
+      [...eduArray, eduInfo].sort((a, b) => {
+        return new Date(a.fromYear) - new Date(b.fromYear);
+      })
+    );
+    cancelForm();
   };
 
   return (

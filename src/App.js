@@ -1,186 +1,127 @@
-import React from "react";
+import React, { useState } from "react";
 import Navigation from "./Components/Navigation";
 import Contact from "./Components/Contact/Contact";
 import Education from "./Components/Education/Education";
 import Work from "./Components/Work/Work";
 import Review from "./Components/Review";
+import Footer from "./Components/Footer";
 
-class App extends React.Component {
-  constructor() {
-    super();
+const App = () => {
+  const [isContactActive, setContactActive] = useState(true);
+  const [isEducationActive, setEducationActive] = useState(false);
+  const [isWorkActive, setWorkActive] = useState(false);
+  const [isReviewActive, setReviewActive] = useState(false);
+  const [isContactFormActive, setContactFormActive] = useState(true);
+  const [isEduFormActive, setEduFormActive] = useState(true);
+  const [isWorkFormActive, setWorkFormActive] = useState(true);
+  const [contactCard, setContactCard] = useState("");
+  const [eduCards, setEduCards] = useState([]);
+  const [workCards, setWorkCards] = useState([]);
 
-    this.state = {
-      isContactActive: true,
-      isEducationActive: false,
-      isWorkActive: false,
-      isReviewActive: false,
-      isContactFormActive: true,
-      isEduFormActive: true,
-      isWorkFormActive: true,
-      contactCard: "",
-      educationCards: [],
-      workCards: [],
-    };
-
-    this.setContactCard = this.setContactCard.bind(this);
-    this.setEducationCards = this.setEducationCards.bind(this);
-    this.setWorkCards = this.setWorkCards.bind(this);
-    this.prevPage = this.prevPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.toggleContactForm = this.toggleContactForm.bind(this);
-    this.toggleEduForm = this.toggleEduForm.bind(this);
-    this.toggleWorkForm = this.toggleWorkForm.bind(this);
-  }
-
-  setContactCard(card) {
-    this.setState({
-      contactCard: card,
-    });
-  }
-
-  setEducationCards(cards) {
-    this.setState({
-      educationCards: cards,
-    });
-  }
-
-  setWorkCards(cards) {
-    this.setState({
-      workCards: cards,
-    });
-  }
-
-  nextPage() {
-    if (this.state.isContactActive) {
-      this.setState({
-        isContactActive: !this.state.isContactActive,
-        isEducationActive: !this.state.isEducationActive,
-      });
-    } else if (this.state.isEducationActive) {
-      this.setState({
-        isEducationActive: !this.state.isEducationActive,
-        isWorkActive: !this.state.isWorkActive,
-      });
-    } else if (this.state.isWorkActive) {
-      this.setState({
-        isWorkActive: !this.state.isWorkActive,
-        isReviewActive: !this.state.isReviewActive,
-      });
+  const nextPage = () => {
+    if (isContactActive) {
+      setContactActive((prevState) => !prevState);
+      setEducationActive((prevState) => !prevState);
+    } else if (isEducationActive) {
+      setEducationActive((prevState) => !prevState);
+      setWorkActive((prevState) => !prevState);
+    } else if (isWorkActive) {
+      setWorkActive((prevState) => !prevState);
+      setReviewActive((prevState) => !prevState);
     }
-  }
+  };
 
-  prevPage() {
-    if (this.state.isReviewActive) {
-      this.setState({
-        isReviewActive: !this.state.isReviewActive,
-        isWorkActive: !this.state.isWorkActive,
-      });
-    } else if (this.state.isWorkActive) {
-      this.setState({
-        isWorkActive: !this.state.isWorkActive,
-        isEducationActive: !this.state.isEducationActive,
-      });
-    } else if (this.state.isEducationActive) {
-      this.setState({
-        isEducationActive: !this.state.isEducationActive,
-        isContactActive: !this.state.isContactActive,
-      });
+  const prevPage = () => {
+    if (isReviewActive) {
+      setReviewActive((prevState) => !prevState);
+      setWorkActive((prevState) => !prevState);
+    } else if (isWorkActive) {
+      setWorkActive((prevState) => !prevState);
+      setEducationActive((prevState) => !prevState);
+    } else if (isEducationActive) {
+      setEducationActive((prevState) => !prevState);
+      setContactActive((prevState) => !prevState);
     }
-  }
-
-  toggleContactForm = () => {
-    this.setState({
-      isContactFormActive: !this.state.isContactFormActive,
-    });
   };
 
-  toggleEduForm = () => {
-    this.setState({
-      isEduFormActive: !this.state.isEduFormActive,
-    });
+  const toggleContactForm = () => {
+    setContactFormActive((prevState) => !prevState);
   };
 
-  toggleWorkForm = () => {
-    this.setState({
-      isWorkFormActive: !this.state.isWorkFormActive,
-    });
+  const toggleEduForm = () => {
+    setEduFormActive((prevState) => !prevState);
   };
 
-  render() {
-    return (
-      <div className="App">
-        <Navigation />
-        <div className="mainWrapper">
-          <div
-            className={
-              this.state.isContactActive ? "activeSection" : "inactiveSection"
-            }
-          >
-            <Contact
-              contactCard={this.state.contactCard}
-              setContactCard={this.setContactCard}
-              toggleContactForm={this.toggleContactForm}
-              isContactFormActive={this.state.isContactFormActive}
-            />
-          </div>
-          <div
-            className={
-              this.state.isEducationActive ? "activeSection" : "inactiveSection"
-            }
-          >
-            <Education
-              educationCards={this.state.educationCards}
-              setEducationCards={this.setEducationCards}
-              toggleEduForm={this.toggleEduForm}
-              isEduFormActive={this.state.isEduFormActive}
-            />
-          </div>
-          <div
-            className={
-              this.state.isWorkActive ? "activeSection" : "inactiveSection"
-            }
-          >
-            <Work
-              workCards={this.state.workCards}
-              setWorkCards={this.setWorkCards}
-              toggleWorkForm={this.toggleWorkForm}
-              isWorkFormActive={this.state.isWorkFormActive}
-            />
-          </div>
-          <div
-            className={
-              this.state.isReviewActive ? "activeSection" : "inactiveSection"
-            }
-          >
-            <Review
-              contactCard={this.state.contactCard}
-              educationCards={this.state.educationCards}
-              workCards={this.state.workCards}
-              // isContactFormActive={this.state.isContactFormActive}
-              // isEduFormActive={this.state.isEduFormActive}
-              // isWorkFormActive={this.state.isWorkFormActive}
-            />
-          </div>
+  const toggleWorkForm = () => {
+    setWorkFormActive((prevState) => !prevState);
+  };
+
+  const checkReview = () => {
+    console.log(isReviewActive);
+  };
+
+  // useEffect(() => {
+  //   setReviewActive(isReviewActive);
+  // }, [isReviewActive]);
+
+  return (
+    <div className="App">
+      <Navigation />
+      <div className="mainWrapper">
+        <div className={isContactActive ? "activeSection" : "inactiveSection"}>
+          <Contact
+            contactCard={contactCard}
+            setContactCard={setContactCard}
+            toggleContactForm={toggleContactForm}
+            isContactFormActive={isContactFormActive}
+          />
         </div>
-        <div className="formNavBtns">
-          <button
-            className={this.state.isContactActive ? "hiddenBtn" : null}
-            onClick={this.prevPage}
-          >
-            Previous
-          </button>
-          <button
-            className={this.state.isReviewActive ? "hiddenBtn" : null}
-            onClick={this.nextPage}
-          >
-            Next
-          </button>
+        <div
+          className={isEducationActive ? "activeSection" : "inactiveSection"}
+        >
+          <Education
+            eduCards={eduCards}
+            setEduCards={setEduCards}
+            toggleEduForm={toggleEduForm}
+            isEduFormActive={isEduFormActive}
+            isReviewActive={isReviewActive}
+          />
         </div>
-
-        <footer>Footer</footer>
+        <div className={isWorkActive ? "activeSection" : "inactiveSection"}>
+          <Work
+            workCards={workCards}
+            setWorkCards={setWorkCards}
+            toggleWorkForm={toggleWorkForm}
+            isWorkFormActive={isWorkFormActive}
+            isReviewActive={isReviewActive}
+          />
+        </div>
+        <div className={isReviewActive ? "activeSection" : "inactiveSection"}>
+          <Review
+            contactCard={contactCard}
+            educationCards={eduCards}
+            workCards={workCards}
+          />
+        </div>
       </div>
-    );
-  }
-}
+      <div className="formNavBtns">
+        <button
+          className={isContactActive ? "hiddenBtn" : ""}
+          onClick={prevPage}
+        >
+          Previous
+        </button>
+        <button
+          className={isReviewActive ? "hiddenBtn" : ""}
+          onClick={nextPage}
+        >
+          Next
+        </button>
+        <button onClick={checkReview}>Test</button>
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
 export default App;

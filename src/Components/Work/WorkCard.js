@@ -1,7 +1,7 @@
 import React from "react";
 
 const WorkCard = (props) => {
-  const { cardInfo, deleteCard, toggleWorkForm, edit } = props;
+  const { cardInfo, deleteCard, toggleWorkForm, isReviewActive, edit } = props;
   const { company, city, addrState, fromYear, toYear, role, description, id } =
     cardInfo;
 
@@ -51,13 +51,21 @@ const WorkCard = (props) => {
         </div>
       </div>
       <div className="cardBtns">
-        <button type="button" onClick={handleEdit}>
+        <button
+          className={isReviewActive ? "hiddenBtn" : ""}
+          type="button"
+          onClick={handleEdit}
+        >
           <img
             src={window.location.origin + "/img/edit_icon.svg"}
             alt="edit button icon"
           ></img>
         </button>
-        <button type="button" onClick={handleDelete}>
+        <button
+          className={isReviewActive ? "hiddenBtn" : ""}
+          type="button"
+          onClick={handleDelete}
+        >
           <img
             src={window.location.origin + "/img/delete_icon.svg"}
             alt="delete button icon"

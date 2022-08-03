@@ -2,75 +2,69 @@ import React from "react";
 
 const WorkForm = (props) => {
   const {
-    addWorkObj,
-    createCards,
     toggleWorkForm,
     clearForm,
-    deleteCard,
     setEditActive,
     isEditActive,
-    setCompany,
-    setCity,
-    setAddrState,
-    setFromYear,
-    setToYear,
-    setRole,
-    setDescription,
-    company,
-    city,
-    addrState,
-    fromYear,
-    toYear,
-    role,
-    description,
-    id,
+    workInfo,
+    setWorkInfo,
+    workArray,
+    setWorkArray,
+    // deleteCard,
   } = props;
 
+  const { company, city, addrState, fromYear, toYear, role, description, id } =
+    workInfo;
+
+  const cancelForm = () => {
+    toggleWorkForm();
+    clearForm();
+    if (isEditActive === true) {
+    }
+    setEditActive(false);
+  };
+
   const handleCompanyChange = (e) => {
-    setCompany(e.target.value);
+    setWorkInfo({ ...workInfo, company: e.target.value });
   };
 
   const handleCityChange = (e) => {
-    setCity(e.target.value);
+    setWorkInfo({ ...workInfo, city: e.target.value });
   };
 
   const handleAddrStateChange = (e) => {
-    setAddrState(e.target.value);
+    setWorkInfo({ ...workInfo, addrState: e.target.value });
   };
 
   const handleFromYearChange = (e) => {
-    setFromYear(e.target.value);
+    setWorkInfo({ ...workInfo, fromYear: e.target.value });
   };
 
   const handleToYearChange = (e) => {
-    setToYear(e.target.value);
+    setWorkInfo({ ...workInfo, toYear: e.target.value });
   };
 
   const handleRoleChange = (e) => {
-    setRole(e.target.value);
+    setWorkInfo({ ...workInfo, role: e.target.value });
   };
 
   const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
+    setWorkInfo({ ...workInfo, description: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isEditActive === true) {
-      await deleteCard(id); //Without await,
+      // deleteCard(id);
       setEditActive(false);
     }
-    await addWorkObj();
-    createCards();
-    toggleWorkForm();
-    clearForm();
+    setWorkArray(
+      [...workArray, workInfo].sort((a, b) => {
+        return new Date(a.fromYear) - new Date(b.fromYear);
+      })
+    );
+    cancelForm();
   };
-
-  const cancelForm = (e) => {
-    toggleWorkForm();
-    clearForm();
-  };
-
   return (
     <form onSubmit={handleSubmit}>
       <div className="workFormContainer">

@@ -34,10 +34,17 @@ html, body {
     width: 100%;
     background: royalblue;
     height: auto;
+    display: flex;
+    align-items: center;
 }
 
-footer {
-    height: 50px;
+.footer {
+    width: 100%;
+    height: auto;
+    background: royalblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .mainWrapper {

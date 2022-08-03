@@ -3,7 +3,14 @@ import ContactCard from "./ContactCard";
 import ContactForm from "./ContactForm";
 
 const Contact = (props) => {
-  const [contactInfo, setContactInfo ] = useState({
+  const {
+    contactCard,
+    setContactCard,
+    isContactFormActive,
+    toggleContactForm,
+  } = props;
+
+  const [contactInfo, setContactInfo] = useState({
     firstName: "",
     lastName: "",
     addr1: "",
@@ -13,38 +20,36 @@ const Contact = (props) => {
     zip: "",
     email: "",
     phone: "",
-  })
+  });
 
   const createCard = () => {
-    props.setContactCard(
+    setContactCard(
       <ContactCard
-        toggleContactForm={props.toggleContactForm}
+        toggleContactForm={toggleContactForm}
         contactInfo={contactInfo}
         setContactInfo={setContactInfo}
       />
     );
-  }
+  };
 
-    return (
-      <div className="contactSection">
-        <h2>Contact Info</h2>
-        {props.contactCard}
-        <div
-          className={
-            props.isContactFormActive
-              ? "activeContactForm"
-              : "inactiveContactForm"
-          }
-        >
-          <ContactForm
-            toggleContactForm={props.toggleContactForm}
-            createCard={createCard}
-            contactInfo={contactInfo}
-            setContactInfo={setContactInfo}
-          />
-        </div>
+  return (
+    <div className="contactSection">
+      <h2>Contact Info</h2>
+      {contactCard}
+      <div
+        className={
+          isContactFormActive ? "activeContactForm" : "inactiveContactForm"
+        }
+      >
+        <ContactForm
+          toggleContactForm={toggleContactForm}
+          createCard={createCard}
+          contactInfo={contactInfo}
+          setContactInfo={setContactInfo}
+        />
       </div>
-    );
-  }
+    </div>
+  );
+};
 
 export default Contact;
