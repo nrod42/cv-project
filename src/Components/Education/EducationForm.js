@@ -9,31 +9,26 @@ const EducationForm = (props) => {
     createCards,
     toggleEduForm,
     clearForm,
-    setSchool,
-    setFromYear,
-    setToYear,
-    setDegree,
-    school,
-    degree,
-    fromYear,
-    toYear,
-    id,
+    eduInfo,
+    setEduInfo,
   } = props;
 
+  const {school, fromYear, toYear, degree, id} = eduInfo;
+
   const handleSchoolChange = (e) => {
-    setSchool(e.target.value);
+    setEduInfo({...eduInfo, school: e.target.value});
   };
 
   const handleFromYearChange = (e) => {
-    setFromYear(e.target.value);
+    setEduInfo({...eduInfo, fromYear: e.target.value});  
   };
 
   const handleToYearChange = (e) => {
-    setToYear(e.target.value);
+    setEduInfo({...eduInfo, toYear: e.target.value});  
   };
 
   const handleDegreeChange = (e) => {
-    setDegree(e.target.value);
+    setEduInfo({...eduInfo, degree: e.target.value});  
   };
 
   const handleSubmit = async (e) => {

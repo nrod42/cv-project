@@ -1,168 +1,106 @@
-import React from "react";
+import React, { useState } from "react";
 import EducationForm from "./EducationForm";
 import EducationCard from "./EducationCard";
 import uniqid from "uniqid";
 
-class Education extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEditActive: false,
-      eduData: [],
-      school: "",
-      fromYear: "",
-      toYear: "",
-      degree: "",
-      id: uniqid(),
-    };
+const Education = (props) => {
+  const {toggleEduForm, educationCards, setEducationCards, isEduFormActive} = props;
+  const [eduInfo, setEduInfo] = useState({
+    school: "",
+    fromYear: "",
+    toYear: "",
+    degree: "",
+    id: uniqid(),
+  })
+  const [isEditActive, setEditActive] = useState(false);
+  const [eduData, setEduData] = useState([]);
 
-    this.addEduObj = this.addEduObj.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
-    this.createCards = this.createCards.bind(this);
-    this.clearForm = this.clearForm.bind(this);
-    this.edit = this.edit.bind(this);
-    this.setSchool = this.setSchool.bind(this);
-    this.setFromYear = this.setFromYear.bind(this);
-    this.setToYear = this.setToYear.bind(this);
-    this.setDegree = this.setDegree.bind(this);
-    this.setEditActive = this.setEditActive.bind(this);
-  }
+  // useEffect(() => {
+  //   const result = eduData.filter((eduObj) => eduObj.id !== id);
+  //   setEduData(result);
+  // }, [eduData]);
 
-  setSchool = (school) => {
-    this.setState({
-      school: school,
-    });
-  };
-
-  setFromYear = (year) => {
-    this.setState({
-      fromYear: year,
-    });
-  };
-
-  setToYear = (year) => {
-    this.setState({
-      toYear: year,
-    });
-  };
-
-  setDegree = (degree) => {
-    this.setState({
-      degree: degree,
-    });
-  };
-
-  setEditActive = (status) => {
-    this.setState({
-      isEditActive: status,
-    });
-  };
-
-  createCards() {
-    let orderedState = this.state.eduData.sort((a, b) => {
+  function createCards () {
+    let orderedState = eduData.sort((a, b) => {
       return new Date(a.fromYear) - new Date(b.fromYear);
     });
 
     let newState = orderedState.map((obj) => (
       <EducationCard
-        toggleEduForm={this.props.toggleEduForm}
-        deleteCard={this.deleteCard}
-        edit={this.edit}
+        key={uniqid()}
+        toggleEduForm={toggleEduForm}
+        deleteCard={deleteCard}
+        edit={edit}
         cardInfo={obj}
-        school={this.state.school}
-        fromYear={this.state.fromYear}
-        toYear={this.state.toYear}
-        degree={this.state.degree}
-        setSchool={this.setSchool}
-        setFromYear={this.setFromYear}
-        setToYear={this.setToYear}
-        setDegree={this.setDegree}
+        
+        eduInfo={eduInfo}
+        setEduInfo={setEduInfo}
       />
     ));
-    this.props.setEducationCards(newState);
+    setEducationCards(newState);
   }
 
-  addEduObj() {
-    this.setState({
-      eduData: [
-        ...this.state.eduData,
-        {
-          school: this.state.school,
-          fromYear: this.state.fromYear,
-          toYear: this.state.toYear,
-          degree: this.state.degree,
-          id: this.state.id,
-        },
-      ],
-    });
+  const addEduObj = () => {
+    setEduData([...eduData, eduInfo]);
   }
 
-  clearForm() {
-    this.setState({
+  const clearForm = () => {
+    setEduInfo({
       school: "",
       fromYear: "",
       toYear: "",
       degree: "",
       id: uniqid(),
-    });
+    })
   }
 
-  edit(id) {
-    let editedObj = this.state.eduData.find((eduObj) => eduObj.id === id);
-    this.setState({
-      isEditActive: true,
+  const edit = async (id) => {
+    await setEditActive(true)
+    let editedObj = eduData.find((eduObj) => eduObj.id === id); // finds the obj to be edited
+    setEduInfo({
       school: editedObj.school,
       fromYear: editedObj.fromYear,
       toYear: editedObj.toYear,
       degree: editedObj.degree,
       id: editedObj.id,
-    });
+    })
   }
 
-  async deleteCard(id) {
-    await this.setState({
-      eduData: this.state.eduData.filter((eduObj) => eduObj.id !== id),
-    });
-    this.createCards();
+  const deleteCard = async (id) => {
+    console.log('eduData')
+    await setEduData(eduData.filter((eduObj) => eduObj.id !== id))
+    createCards();
   }
 
-  render() {
+
     return (
       <div className="educationSection">
         <h2>Education Info</h2>
-        {this.props.educationCards}
+        {educationCards}
         <div className="addMoreBtn">
-          <button onClick={this.props.toggleEduForm}>Add More</button>
+          <button onClick={toggleEduForm}>Add More</button>
         </div>
         <div
           className={
-            this.props.isEduFormActive
+            isEduFormActive
               ? "activeEducationForm"
               : "inactiveEducationForm"
           }
         >
           <EducationForm
-            toggleEduForm={this.props.toggleEduForm}
-            addEduObj={this.addEduObj}
-            createCards={this.createCards}
-            deleteCard={this.deleteCard}
-            clearForm={this.clearForm}
-            isEditActive={this.state.isEditActive}
-            school={this.state.school}
-            fromYear={this.state.fromYear}
-            toYear={this.state.toYear}
-            degree={this.state.degree}
-            id={this.state.id}
-            setSchool={this.setSchool}
-            setFromYear={this.setFromYear}
-            setToYear={this.setToYear}
-            setDegree={this.setDegree}
-            setEditActive={this.setEditActive}
+            toggleEduForm={toggleEduForm}
+            addEduObj={addEduObj}
+            createCards={createCards}
+            deleteCard={deleteCard}
+            clearForm={clearForm}
+            isEditActive={isEditActive}
+            eduInfo={eduInfo}
+            setEduInfo={setEduInfo}
+            setEditActive={setEditActive}
           />
         </div>
       </div>
     );
   }
-}
 
 export default Education;

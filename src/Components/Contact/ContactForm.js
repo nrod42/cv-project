@@ -4,61 +4,53 @@ const ContactForm = (props) => {
   const {
     createCard,
     toggleContactForm,
-    setFirstName,
-    setLastName,
-    setAddr1,
-    setAddr2,
-    setCity,
-    setAddrState,
-    setZip,
-    setEmail,
-    setPhone,
-    firstName,
-    lastName,
-    addr1,
-    addr2,
-    city,
-    addrState,
-    zip,
-    email,
-    phone,
+    contactInfo,
+    setContactInfo,
+
   } = props;
 
+  const {firstName, lastName, addr1, addr2, city, addrState, zip, email, phone} = contactInfo
+
+
   const handleFirstName = (e) => {
-    setFirstName(e.target.value);
+    setContactInfo({...contactInfo, firstName: e.target.value});
   };
 
   const handleLastName = (e) => {
-    setLastName(e.target.value);
+    setContactInfo({...contactInfo, lastName: e.target.value});
   };
 
   const handleAddr1 = (e) => {
-    setAddr1(e.target.value);
+    setContactInfo({...contactInfo, addr1: e.target.value});
   };
 
   const handleAddr2 = (e) => {
-    setAddr2(e.target.value);
+    setContactInfo({...contactInfo, addr2: e.target.value});
   };
 
   const handleCity = (e) => {
-    setCity(e.target.value);
+    setContactInfo({...contactInfo, city: e.target.value});
   };
 
   const handleAddrState = (e) => {
-    setAddrState(e.target.value);
+    setContactInfo({...contactInfo, addrState: e.target.value});
   };
 
   const handleZip = (e) => {
-    setZip(e.target.value);
+    setContactInfo({...contactInfo, zip: e.target.value});
   };
 
   const handleEmail = (e) => {
-    setEmail(e.target.value);
+    setContactInfo({...contactInfo, email: e.target.value});
   };
 
   const handlePhone = (e) => {
-    setPhone(e.target.value);
+    setContactInfo({...contactInfo, phone: e.target.value});
   };
+
+  // const handleChange = (e) => {
+  //   setContactInfo(...contactInfo,)
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -129,7 +121,11 @@ const ContactForm = (props) => {
         </div>
         <div className="inputDiv">
           <label htmlFor="zip">Zip Code:</label>
-          <input onChange={handleZip} type="text" id="zip" value={zip}></input>
+          <input 
+            onChange={handleZip} 
+            type="text" i
+            d="zip" 
+            value={zip}></input>
         </div>
         <div className="inputDiv">
           <label htmlFor="email">E-mail:</label>

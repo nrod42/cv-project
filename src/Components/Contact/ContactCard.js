@@ -1,18 +1,8 @@
 import React from "react";
 
 const ContactCard = (props) => {
-  const {
-    toggleContactForm,
-    firstName,
-    lastName,
-    addr1,
-    addr2,
-    city,
-    addrState,
-    zip,
-    email,
-    phone,
-  } = props;
+  const {toggleContactForm, contactInfo, setContactInfo} = props;
+  const {firstName, lastName, addr1, addr2, city, addrState, zip, email, phone} = contactInfo
 
   return (
     <div className="contactCard">

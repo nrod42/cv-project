@@ -1,7 +1,7 @@
 import React from "react";
 
 const EducationCard = (props) => {
-  const { cardInfo, deleteCard, toggleEduForm, edit } = props;
+  const { deleteCard, toggleEduForm, edit, cardInfo } = props;
   const { school, fromYear, toYear, degree, id } = cardInfo;
 
   const handleDelete = () => {

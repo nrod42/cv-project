@@ -88,6 +88,7 @@ class Work extends React.Component {
     });
     let newState = orderedState.map((obj) => (
       <WorkCard
+        key={uniqid()}
         toggleWorkForm={this.props.toggleWorkForm}
         deleteCard={this.deleteCard}
         edit={this.edit}
