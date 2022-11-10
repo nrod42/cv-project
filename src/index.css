@@ -1,284 +1,110 @@
-@font-face {
-    font-family: 'Roboto';
-    src: url('./Roboto-Regular.ttf') format('truetype');
-}
-
-* {
-    box-sizing: border-box;
-    font-family: 'Roboto';
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    background: beige;
-    font-size: 18px;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 #root {
-    height: 100%;
+  height: 100%;
 }
 
 .App {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  min-height: 100vh;
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-image:  radial-gradient(#000022 1.55px, transparent 1.55px), radial-gradient(#000022 1.55px, #e5e5f7 1.55px);
+  background-size: 62px 62px;
+  background-position: 0 0,31px 31px;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav {
-    width: 100%;
-    background: royalblue;
-    height: auto;
+  background: #000022;
+}
+
+.nav-link .active {
+  color: #000022 !important;
+}
+
+.page {
+  padding-bottom: 7rem;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.guideBtns {
+  position: absolute;
+  /* height: 3rem;  */
+  bottom: 2rem;
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cardBody {
+  background: #000022;
+  border-radius: 10px;
+}
+
+.cardBody div {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+.cardDataTitle {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.reviewPage {
+  align-self: center;
+  /* width: 70%; */
+}
+
+.finalCV {
+  margin: 50px 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 1131.36px;
+  width: 800px;
+}
+
+.cvContact {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cvSection {
+  border-top: 1px solid black;
+  padding: 20px;
 }
 
 footer {
-    height: 50px;
-}
-
-.mainWrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.formNavBtns {
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-}
-
-button:hover {
-    cursor: pointer;
-    filter: brightness(85%);
-}
-
-.hiddenBtn {
-    opacity: 0;
-    visibility: hidden;
-}
-
-img  {
-    height: 30px;
-    width: 30px;
-}
-
-form {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px; 
-}
-
-label {
-    font-size: 18px;
-    font-weight: bold;
-    padding-right: 5px;
-}
-
-input {
-    padding: 10px;
-    outline: none;
-    border: none;
-}
-
-p {
-    padding: 5px;
-}
-
-h2 {
-    margin-top: 30px;
-}
-
-.contactFormContainer, .eduFormContainer, .workFormContainer {
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.contactFormContainer > div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.inputDiv {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.inputDiv button{
-    width: 100%;
-}
-
-.contactFormContainer .inputDiv {
-    flex-direction: column;
-}
-
-.eduFormContainer > .inputDiv.doubleInput {
-    flex-direction: column;
-}
-
-.twoLineInputs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.activeSection {
-    height: 100%;
-    width: 100%;
-    opacity: 1;
-    visibility: visible;
-    overflow: auto;
-    transition: opacity 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.inactiveSection {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    height: 0;
-    width: 0;
-}
-
-.contactSection, .educationSection, .workSection {
-    height: 100%;
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    padding: 20px;
-}
-
-.reviewSection {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.activeContactForm, .activeEducationForm, .activeWorkForm {
-    background: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px gray;
-    height: auto;
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 1;
-    visibility: visible;
-    overflow: auto;
-    z-index: 2;
-}
-
-.activeContactForm {
-    width: auto;
-    top: 10%;
-}
-
-.activeEducationForm {
-    width: auto;
-    top: 10%;
-}
-
-.activeWorkForm {
-    width: auto;
-    top: 10%;
-}
-
-.inactiveContactForm, .inactiveEducationForm, .inactiveWorkForm {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 0;
-    width: 0;
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-}
-
-.contactCard, .eduCard, .workCard {
-    background: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px gray;
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    min-width: 200px;
-} 
-
-.contactCardInfo, .eduCardInfo, .workCardInfo {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.contactCardInfo > div, .eduCardInfo > div, .workCardInfo > div {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.cardSubSection {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.cardTitle {
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.cardBtns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cardBtns > button {
-    margin: 10px;
-}
-
-.finalSubmitBtn {
-    padding: 10px;
-    background-color: purple;
-    color: white;
-    font-size: 1.15rem;
-    border-radius: 0;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2rem; 
 }
