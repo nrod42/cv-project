@@ -10,25 +10,25 @@ const GuideBtns = () => {
 
   const nextBtn = () => {
     if (location.pathname === "/") {
-      navigate("/contact-info");
+      navigate("/cv-project/contact-info");
     } else if (location.pathname === "/contact-info") {
-      navigate("/education-history");
+      navigate("/cv-project/education-history");
     } else if (location.pathname === "/education-history") {
-      navigate("/work-history");
+      navigate("/cv-project/work-history");
     } else if (location.pathname === "/work-history") {
-      navigate("/review");
+      navigate("/cv-project/review");
     }
   };
 
   const prevBtn = () => {
     if (location.pathname === "/contact-info") {
-      navigate("/");
+      navigate("/cv-project");
     } else if (location.pathname === "/education-history") {
-      navigate("/contact-info");
+      navigate("/cv-project/contact-info");
     } else if (location.pathname === "/work-history") {
       navigate("/education-history");
     } else if (location.pathname === "/review") {
-      navigate("/work-history");
+      navigate("/cv-project/work-history");
     }
   };
 

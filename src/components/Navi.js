@@ -8,14 +8,14 @@ const Navi = () => {
   return (
     <Nav variant="pills" defaultActiveKey="home">
       <Nav.Item>
-        <Nav.Link as={Link} to={"/"} eventKey="home" className="text-white">
+        <Nav.Link as={Link} to={"/cv-project"} eventKey="home" className="text-white">
           Home
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link
           as={Link}
-          to={"/contact-info"}
+          to={"/cv-project/contact-info"}
           eventKey="contact"
           className="text-white"
         >
@@ -25,7 +25,7 @@ const Navi = () => {
       <Nav.Item>
         <Nav.Link
           as={Link}
-          to={"/education-history"}
+          to={"/cv-project/education-history"}
           eventKey="education"
           className="text-white"
         >
@@ -35,7 +35,7 @@ const Navi = () => {
       <Nav.Item>
         <Nav.Link
           as={Link}
-          to={"/work-history"}
+          to={"/cv-project/work-history"}
           eventKey="work"
           className="text-white"
         >
@@ -45,7 +45,7 @@ const Navi = () => {
       <Nav.Item>
         <Nav.Link
           as={Link}
-          to={"/review"}
+          to={"/cv-project/review"}
           eventKey="review"
           className="text-white"
         >

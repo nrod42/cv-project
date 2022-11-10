@@ -34,11 +34,11 @@ const App = () => {
         }}
       >
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/contact-info" element={<Contact />}></Route>
-          <Route path="/education-history" element={<Education />}></Route>
-          <Route path="/work-history" element={<Work />}></Route>
-          <Route path="/review" element={<Review />}></Route>
+          <Route path="/cv-project/" element={<Home />}></Route>
+          <Route path="/cv-project/contact-info" element={<Contact />}></Route>
+          <Route path="/cv-project/education-history" element={<Education />}></Route>
+          <Route path="/cv-project/work-history" element={<Work />}></Route>
+          <Route path="/cv-project/review" element={<Review />}></Route>
         </Routes>
       </SetListsContext.Provider>
       <GuideBtns />
