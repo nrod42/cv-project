@@ -1,33 +1,33 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import WorkFormModal from "../modals/WorkFormModal";
-import WorkCard from "../cards/WorkCard";
+import ProjectFormModal from "../modals/ProjectFormModal";
+import ProjectCard from "../cards/ProjectCard";
+import uniqid from "uniqid";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import uniqid from "uniqid";
 
-const Work = () => {
-  const { workInfo } = useContext(SetPageInfoContext);
+const Projects = () => {
+  const { projectInfo } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
 
   return (
     <div className="page">
-      <h1>Work Experience</h1>
-      {workInfo.map((work) => (
-        <WorkCard
+      <h1>Projects</h1>
+      {projectInfo.map((project) => (
+        <ProjectCard
           key={uniqid()}
-          workInfo={work}
+          projectInfo={project}
           showModal={() => setModalShow(true)}
         />
       ))}
       <>
         <Button variant="secondary" onClick={() => setModalShow(true)}>
-          Add Work Experience
+          Add Project
         </Button>
-        <WorkFormModal show={modalShow} onHide={() => setModalShow(false)} />
+        <ProjectFormModal show={modalShow} onHide={() => setModalShow(false)} />
       </>
     </div>
   );
 };
 
-export default Work;
+export default Projects;

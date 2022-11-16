@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { SetListsContext } from "../../App";
+import { SetPageInfoContext } from "../../App";
 import ContactFormModal from "../modals/ContactFormModal";
 import { Button } from "react-bootstrap";
 import ContactCard from "../cards/ContactCard";
@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const Contact = () => {
-  const { contactInfo } = useContext(SetListsContext);
+  const { contactInfo } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
 
   return (

@@ -9,13 +9,17 @@ const GuideBtns = () => {
   const navigate = useNavigate();
 
   const nextBtn = () => {
-    if (location.pathname === "/cv-project/") {
+    if (location.pathname === "/cv-project") {
       navigate("/cv-project/contact-info");
     } else if (location.pathname === "/cv-project/contact-info") {
       navigate("/cv-project/education-history");
     } else if (location.pathname === "/cv-project/education-history") {
       navigate("/cv-project/work-history");
     } else if (location.pathname === "/cv-project/work-history") {
+      navigate("/cv-project/projects");
+    } else if (location.pathname === "/cv-project/projects") {
+      navigate("/cv-project/skills");
+    } else if (location.pathname === "/cv-project/skills") {
       navigate("/cv-project/review");
     }
   };
@@ -27,28 +31,32 @@ const GuideBtns = () => {
       navigate("/cv-project/contact-info");
     } else if (location.pathname === "/cv-project/work-history") {
       navigate("/cv-project/education-history");
-    } else if (location.pathname === "/cv-project/review") {
+    } else if (location.pathname === "/cv-project/projects") {
       navigate("/cv-project/work-history");
+    } else if (location.pathname === "/cv-project/skills") {
+      navigate("/cv-project/projects");
+    } else if (location.pathname === "/cv-project/review") {
+      navigate("/cv-project/skills");
     }
   };
 
   return (
     <div className="guideBtns">
       <Button
-        variant="secondary"
-        style={{ visibility: location.pathname === "/" ? "hidden" : "visible" }}
+        variant="warning"
+        style={{ visibility: location.pathname === "/cv-project" ? "hidden" : "visible" }}
         onClick={prevBtn}
       >
-        Previous
+        ← Previous
       </Button>
       <Button
-        variant="secondary"
+        variant="warning"
         style={{
-          visibility: location.pathname === "/review" ? "hidden" : "visible",
+          visibility: location.pathname === "/cv-project/review" ? "hidden" : "visible",
         }}
         onClick={nextBtn}
       >
-        Next
+        Next →
       </Button>
     </div>
   );

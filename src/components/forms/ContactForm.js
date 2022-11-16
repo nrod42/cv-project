@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import { SetListsContext } from "../../App";
+import { SetPageInfoContext } from "../../App";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const ContactForm = (props) => {
-  const { setContactInfo } = useContext(SetListsContext);
+  const { setContactInfo } = useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
   const [formInfo, setFormInfo] = useState({

@@ -45,6 +45,26 @@ const Navi = () => {
       <Nav.Item>
         <Nav.Link
           as={Link}
+          to={"/cv-project/projects"}
+          eventKey="projects"
+          className="text-white"
+        >
+          Projects
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link
+          as={Link}
+          to={"/cv-project/skills"}
+          eventKey="skills"
+          className="text-white"
+        >
+          Skills
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link
+          as={Link}
           to={"/cv-project/review"}
           eventKey="review"
           className="text-white"

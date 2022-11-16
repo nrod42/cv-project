@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import { SetListsContext } from "../../App";
+import { SetPageInfoContext } from "../../App";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const EducationForm = (props) => {
-  const { setEducationInfo } = useContext(SetListsContext);
+  const { setEducationInfo } = useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
   const [formInfo, setFormInfo] = useState({
@@ -16,11 +16,11 @@ const EducationForm = (props) => {
     id: uniqid(),
   });
 
-  useEffect(() => {
-    if (props.edited !== undefined) {
-      setFormInfo(props.edited);
-    }
-  }, [props.edited]);
+  // useEffect(() => {
+  //   if (props.edited !== undefined) {
+  //     setFormInfo(props.edited);
+  //   }
+  // }, [props.edited]);
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;

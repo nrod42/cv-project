@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { SetListsContext } from "../../App";
+import { SetPageInfoContext } from "../../App";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const WorkForm = (props) => {
-  const { setWorkInfo } = useContext(SetListsContext);
+  const { setWorkInfo } = useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
   const [formInfo, setFormInfo] = useState({

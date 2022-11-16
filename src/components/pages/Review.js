@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { SetListsContext } from "../../App";
+import { SetPageInfoContext } from "../../App";
 import { Button } from "react-bootstrap";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 const Review = () => {
-  const { contactInfo, educationInfo, workInfo } = useContext(SetListsContext);
+  const { contactInfo, educationInfo, workInfo, projectInfo, skills } = useContext(SetPageInfoContext);
   const printRef = React.useRef();
 
   // Transforms div into pdf
@@ -25,10 +25,10 @@ const Review = () => {
 
   return (
     <div className="page">
+      <h1>Resume</h1>
       <div className="finalCV" ref={printRef}>
-        {/* Contact Section */}
         <div className="cvContact">
-          <h1>
+          <h1 style={{marginTop: "20px"}}>
             {contactInfo[0]?.firstName} {contactInfo[0]?.lastName}
           </h1>
 
@@ -42,6 +42,9 @@ const Review = () => {
         </div>
         <div className="cvSection">
           <h2>Skills</h2>
+            <div>
+              {skills[0]?.skills}
+            </div>
         </div>
         <div className="cvSection">
           <h2>Education</h2>
@@ -52,23 +55,22 @@ const Review = () => {
                   {school.school} | {school.degree}
                 </div>
                 <p>
-                  {school.fromDate} - {school.toDate}
+                <p>{`${new Date(school.fromDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })} - ${new Date(school.toDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })}`}</p>
+
                 </p>
               </div>
             );
           })}
         </div>
         <div className="cvSection">
-          <h2>Experience</h2>
+          <h2>Work Experience</h2>
           {workInfo.map((job) => {
             return (
               <div>
                 <div>
                   {job.company} | {job.role} | {job.city}, {job.addrState}
                 </div>
-                <p>
-                  {job.fromDate} - {job.toDate}
-                </p>
+                <p>{`${new Date(job.fromDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })} - ${new Date(job.toDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })}`}</p>
                 <p>{job.description}</p>
               </div>
             );
@@ -76,10 +78,20 @@ const Review = () => {
         </div>
         <div className="cvSection">
           <h2>Projects</h2>
+          {projectInfo.map((project) => {
+            return (
+              <div>
+                <div>
+                  {project.name}
+                </div>
+                <p>{project.description}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <div>
-        <Button variant="primary" onClick={handleDownloadPdf}>
+      <div style={{marginBottom: "30px"}}>
+        <Button variant="success" onClick={handleDownloadPdf}>
           Download PDF
         </Button>
       </div>

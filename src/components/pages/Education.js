@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { SetListsContext } from "../../App";
+import { SetPageInfoContext } from "../../App";
 import EducationFormModal from "../modals/EducationFormModal";
 import EducationCard from "../cards/EducationCard";
 import { Button } from "react-bootstrap";
@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const Education = () => {
-  const { educationInfo } = useContext(SetListsContext);
+  const { educationInfo } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
   const [edited, setEdited] = useState("");
 
@@ -24,7 +24,7 @@ const Education = () => {
       ))}
       <>
         <Button variant="secondary" onClick={() => setModalShow(true)}>
-          Add Education Info
+          Add Education
         </Button>
         <EducationFormModal
           edited={edited}
