@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import ContactFormModal from "../modals/ContactFormModal";
-import { Button } from "react-bootstrap";
 import ContactCard from "../cards/ContactCard";
+import ContactForm from "../forms/ContactForm";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import CloseButton from "react-bootstrap/CloseButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
@@ -20,12 +22,25 @@ const Contact = () => {
           showModal={() => setModalShow(true)}
         />
       ))}
-      <>
-        <Button variant="secondary" onClick={() => setModalShow(true)}>
-          Add Contact Info
-        </Button>
-        <ContactFormModal show={modalShow} onHide={() => setModalShow(false)} />
-      </>
+
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Add Contact Info
+      </Button>
+
+      <Modal show={modalShow} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Contact</Modal.Title>
+          <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
+        </Modal.Header>
+        <Modal.Body>
+          <ContactForm onHide={() => setModalShow(!modalShow)} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

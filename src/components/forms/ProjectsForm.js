@@ -14,11 +14,11 @@ const ProjectForm = (props) => {
     id: uniqid(),
   });
 
-//   useEffect(() => {
-//     if (props.edited !== undefined) {
-//       setFormInfo(props.edited);
-//     }
-//   }, [props.edited]);
+  //   useEffect(() => {
+  //     if (props.edited !== undefined) {
+  //       setFormInfo(props.edited);
+  //     }
+  //   }, [props.edited]);
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -30,7 +30,6 @@ const ProjectForm = (props) => {
     }
     setValidated(true);
   };
-
 
   const handleFormChange = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
@@ -65,7 +64,7 @@ const ProjectForm = (props) => {
         </Form.Group>
       </Row>
 
-      <Button variant="secondary" type="submit">
+      <Button variant="primary" type="submit">
         Add
       </Button>
     </Form>

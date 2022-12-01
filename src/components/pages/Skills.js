@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import SkillsModal from "../modals/SkillsModal";
 import SkillsCard from "../cards/SkillsCard";
-import uniqid from "uniqid";
-import { Button } from "react-bootstrap";
+import SkillsForm from "../forms/SkillsForm";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import CloseButton from "react-bootstrap/CloseButton";
 import "bootstrap/dist/css/bootstrap.min.css";
+import uniqid from "uniqid";
 
 const Skills = () => {
   const { skills } = useContext(SetPageInfoContext);
@@ -21,10 +23,24 @@ const Skills = () => {
         />
       ))}
       <>
-        <Button variant="secondary" onClick={() => setModalShow(true)}>
+        <Button variant="primary" onClick={() => setModalShow(true)}>
           Add Skills
         </Button>
-        <SkillsModal show={modalShow} onHide={() => setModalShow(false)} />
+
+        <Modal show={modalShow} size="lg" centered>
+          <Modal.Header>
+            <Modal.Title>Skills</Modal.Title>
+            <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
+          </Modal.Header>
+          <Modal.Body>
+            <SkillsForm onHide={() => setModalShow(!modalShow)} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </>
     </div>
   );

@@ -133,7 +133,7 @@ const WorkForm = (props) => {
           />
         </Form.Group>
       </Row>
-      <Button variant="secondary" type="submit">
+      <Button variant="primary" type="submit">
         Add
       </Button>
     </Form>

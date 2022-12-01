@@ -149,8 +149,8 @@ const ContactForm = (props) => {
         </Form.Group>
       </Row>
 
-      <Button variant="secondary" type="submit">
-        Submit form
+      <Button variant="primary" type="submit">
+        Add
       </Button>
     </Form>
   );

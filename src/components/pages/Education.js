@@ -1,15 +1,16 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import EducationFormModal from "../modals/EducationFormModal";
 import EducationCard from "../cards/EducationCard";
-import { Button } from "react-bootstrap";
+import EducationForm from "../forms/EducationForm";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import CloseButton from "react-bootstrap/CloseButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const Education = () => {
   const { educationInfo } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
-  const [edited, setEdited] = useState("");
 
   return (
     <div className="page">
@@ -18,20 +19,28 @@ const Education = () => {
         <EducationCard
           key={uniqid()}
           educationInfo={edu}
-          setEdited={setEdited}
           showModal={() => setModalShow(true)}
         />
       ))}
-      <>
-        <Button variant="secondary" onClick={() => setModalShow(true)}>
-          Add Education
-        </Button>
-        <EducationFormModal
-          edited={edited}
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      </>
+
+      <Button variant="primary" onClick={() => setModalShow(!modalShow)}>
+        Add Education
+      </Button>
+
+      <Modal show={modalShow} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Education</Modal.Title>
+          <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
+        </Modal.Header>
+        <Modal.Body>
+          <EducationForm onHide={() => setModalShow(!modalShow)} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

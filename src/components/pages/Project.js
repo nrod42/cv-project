@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import ProjectFormModal from "../modals/ProjectFormModal";
 import ProjectCard from "../cards/ProjectCard";
-import uniqid from "uniqid";
-import { Button } from "react-bootstrap";
+import ProjectsForm from "../forms/ProjectsForm";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import CloseButton from "react-bootstrap/CloseButton";
 import "bootstrap/dist/css/bootstrap.min.css";
+import uniqid from "uniqid";
 
 const Projects = () => {
   const { projectInfo } = useContext(SetPageInfoContext);
@@ -21,10 +23,24 @@ const Projects = () => {
         />
       ))}
       <>
-        <Button variant="secondary" onClick={() => setModalShow(true)}>
+        <Button variant="primary" onClick={() => setModalShow(true)}>
           Add Project
         </Button>
-        <ProjectFormModal show={modalShow} onHide={() => setModalShow(false)} />
+
+        <Modal show={modalShow} size="lg" centered>
+          <Modal.Header>
+            <Modal.Title>Projects</Modal.Title>
+            <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
+          </Modal.Header>
+          <Modal.Body>
+            <ProjectsForm onHide={() => setModalShow(!modalShow)} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </>
     </div>
   );

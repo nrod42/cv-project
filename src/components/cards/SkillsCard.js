@@ -1,11 +1,11 @@
-import { Card, Button, Row, Col } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const SkillsCard = (props) => {
-  // const { setEditing } = useContext(SetListsContext);
-
-  const { skills, } =
-    props.skills;
+  const { skills } = props.skills;
 
   return (
     <Card style={{ width: "350px" }}>
@@ -18,7 +18,7 @@ const SkillsCard = (props) => {
         </Row>
         <Row>
           <div className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={props.showModal}>
+            <Button variant="primary" onClick={props.showModal}>
               Edit
             </Button>
           </div>

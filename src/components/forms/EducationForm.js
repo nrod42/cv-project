@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -116,7 +116,7 @@ const EducationForm = (props) => {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <Button variant="secondary" type="submit">
+      <Button variant="primary" type="submit">
         Add
       </Button>
     </Form>

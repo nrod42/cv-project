@@ -1,4 +1,7 @@
-import { Card, Button, Row, Col } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const EducationCard = (props) => {
@@ -36,7 +39,7 @@ const EducationCard = (props) => {
         </Row>
         <Row>
           <div className="d-flex justify-content-center">
-            <Button variant="secondary" onClick={handleEdit}>
+            <Button variant="primary" onClick={handleEdit}>
               Edit
             </Button>
           </div>
