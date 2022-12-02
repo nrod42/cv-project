@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 
 const SkillsForm = (props) => {
-  const { skills, setSkills, isEditing, setEditing, edited } =
+  const { skills, setSkills, isEditing, setEditing } =
     useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
@@ -19,21 +19,16 @@ const SkillsForm = (props) => {
 
   useEffect(() => {
     if (isEditing) {
-      setFormInfo(skills.find((skill) => skill.id === edited));
+      setFormInfo(skills);
     }
-  }, [isEditing, skills, edited]);
+  }, [isEditing, skills]);
 
   const handleSubmit = (e) => {
     // e.currentTarget is the form
     e.preventDefault();
     if (e.currentTarget.checkValidity() === true) {
       props.onHide();
-      if (isEditing) {
-        setSkills((prevState) =>
-          prevState.filter((skill) => skill.id !== edited)
-        );
-      }
-      setSkills((prev) => [...prev, formInfo]);
+      setSkills(formInfo);
     }
     setValidated(true);
     setEditing(false);

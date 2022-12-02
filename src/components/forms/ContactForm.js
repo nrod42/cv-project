@@ -1,13 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const ContactForm = (props) => {
-  const { setContactInfo } = useContext(SetPageInfoContext);
+  const { contactInfo, setContactInfo, isEditing, setEditing } =
+    useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
+
   const [formInfo, setFormInfo] = useState({
     firstName: "",
     lastName: "",
@@ -20,15 +25,21 @@ const ContactForm = (props) => {
     id: uniqid(),
   });
 
+  useEffect(() => {
+    if (isEditing) {
+      setFormInfo(contactInfo);
+    }
+  }, [isEditing, contactInfo]);
+
   const handleSubmit = (e) => {
-    const form = e.currentTarget;
+    // e.currentTarget is the form
     e.preventDefault();
-    e.stopPropagation();
-    if (form.checkValidity() === true) {
-      props.onHide(false);
-      setContactInfo([formInfo]);
+    if (e.currentTarget.checkValidity() === true) {
+      props.onHide();
+      setContactInfo((prevState) => formInfo);
     }
     setValidated(true);
+    setEditing(false);
   };
 
   const handleFormChange = (e) => {
@@ -46,7 +57,7 @@ const ContactForm = (props) => {
             name="firstName"
             placeholder="First name"
             onChange={handleFormChange}
-            // defaultValue="Mark"
+            value={formInfo.firstName}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
@@ -58,7 +69,7 @@ const ContactForm = (props) => {
             name="lastName"
             placeholder="Last name"
             onChange={handleFormChange}
-            // defaultValue="Otto"
+            value={formInfo.lastName}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
@@ -72,8 +83,8 @@ const ContactForm = (props) => {
             type="text"
             name="address"
             onChange={handleFormChange}
-            // placeholder="First name"
-            // defaultValue="Mark"
+            placeholder="Address"
+            value={formInfo.address}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
@@ -86,11 +97,12 @@ const ContactForm = (props) => {
         <Form.Group as={Col} md="6" controlId="validationCustom05">
           <Form.Label>City</Form.Label>
           <Form.Control
+            required
             type="text"
             name="city"
             onChange={handleFormChange}
             placeholder="City"
-            required
+            value={formInfo.city}
           />
           <Form.Control.Feedback type="invalid">
             Please provide a valid city.
@@ -99,11 +111,12 @@ const ContactForm = (props) => {
         <Form.Group as={Col} md="3" controlId="validationCustom06">
           <Form.Label>State</Form.Label>
           <Form.Control
+            required
             type="text"
             name="addrState"
             onChange={handleFormChange}
             placeholder="State"
-            required
+            value={formInfo.addrState}
           />
           <Form.Control.Feedback type="invalid">
             Please provide a valid state.
@@ -112,11 +125,12 @@ const ContactForm = (props) => {
         <Form.Group as={Col} md="3" controlId="validationCustom07">
           <Form.Label>Zip</Form.Label>
           <Form.Control
+            required
             type="text"
             name="zip"
             onChange={handleFormChange}
             placeholder="Zip"
-            required
+            value={formInfo.zip}
           />
           <Form.Control.Feedback type="invalid">
             Please provide a valid zip.
@@ -131,8 +145,9 @@ const ContactForm = (props) => {
             required
             type="text"
             name="phone"
-            // placeholder="First name"
+            placeholder="Phone Number"
             onChange={handleFormChange}
+            value={formInfo.phone}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
@@ -142,8 +157,9 @@ const ContactForm = (props) => {
             required
             type="email"
             name="email"
-            // placeholder="Last name"
+            placeholder="E-Mail"
             onChange={handleFormChange}
+            value={formInfo.email}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>

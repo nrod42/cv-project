@@ -9,34 +9,44 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const Contact = () => {
-  const { contactInfo } = useContext(SetPageInfoContext);
+  const { contactInfo, setEditing } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
+
+  const handleClose = () => {
+    setModalShow(!modalShow);
+    setEditing(false);
+  };
 
   return (
     <div className="page">
       <h1>Contact Info</h1>
-      {contactInfo.map((contact) => (
-        <ContactCard
-          key={uniqid()}
-          contactInfo={contact}
-          showModal={() => setModalShow(true)}
-        />
-      ))}
 
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <ContactCard
+        key={uniqid()}
+        contactInfo={contactInfo}
+        showModal={() => setModalShow(true)}
+      />
+
+      <Button
+        variant="primary"
+        onClick={handleClose}
+        style={
+          Object.keys(contactInfo).length !== 0 ? { display: "none" } : null
+        }
+      >
         Add Contact Info
       </Button>
 
       <Modal show={modalShow} size="lg" centered>
         <Modal.Header>
           <Modal.Title>Contact</Modal.Title>
-          <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
+          <CloseButton onClick={handleClose}></CloseButton>
         </Modal.Header>
         <Modal.Body>
           <ContactForm onHide={() => setModalShow(!modalShow)} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+          <Button variant="danger" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

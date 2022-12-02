@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import SkillsCard from "../cards/SkillsCard";
 import SkillsForm from "../forms/SkillsForm";
-import uniqid from "uniqid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -20,15 +19,13 @@ const Skills = () => {
   return (
     <div className="page">
       <h1>Skills</h1>
-      {skills.map((skill) => (
-        <SkillsCard
-          key={uniqid()}
-          skills={skill}
-          showModal={() => setModalShow(true)}
-        />
-      ))}
+      <SkillsCard skills={skills} showModal={() => setModalShow(true)} />
 
-      <Button variant="primary" onClick={handleClose}>
+      <Button
+        variant="primary"
+        onClick={handleClose}
+        style={Object.keys(skills).length !== 0 ? { display: "none" } : null}
+      >
         Add Skills
       </Button>
 

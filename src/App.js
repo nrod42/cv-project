@@ -16,11 +16,11 @@ import Container from "react-bootstrap/Container";
 export const SetPageInfoContext = React.createContext();
 
 const App = () => {
-  const [contactInfo, setContactInfo] = useState([]);
+  const [contactInfo, setContactInfo] = useState({});
   const [educationInfo, setEducationInfo] = useState([]);
   const [workInfo, setWorkInfo] = useState([]);
   const [projectInfo, setProjectInfo] = useState([]);
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState({});
   const [isEditing, setEditing] = useState(false);
   const [edited, setEdited] = useState(1);
 

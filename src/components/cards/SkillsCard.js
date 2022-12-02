@@ -1,31 +1,43 @@
+import React, { useContext } from "react";
+import { SetPageInfoContext } from "../../App";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const SkillsCard = (props) => {
-  const { skills } = props.skills;
+  const { setEditing, setEdited } = useContext(SetPageInfoContext);
 
-  return (
-    <Card style={{ width: "350px" }}>
-      <Card.Body className="cardBody">
-        <Row>
-          <Col>
-            <div className="cardDataTitle">Skills:</div>
-            <div>{skills}</div>
-          </Col>
-        </Row>
-        <Row>
-          <div className="d-flex justify-content-center">
-            <Button variant="primary" onClick={props.showModal}>
-              Edit
-            </Button>
-          </div>
-        </Row>
-      </Card.Body>
-    </Card>
-  );
+  const { skills, id } = props.skills;
+
+  const handleEdit = () => {
+    props.showModal();
+    setEditing(true);
+    setEdited(id);
+  };
+
+  if (skills) {
+    return (
+      <Card style={{ width: "350px" }}>
+        <Card.Body className="cardBody">
+          <Row>
+            <Col>
+              <div className="cardDataTitle">Skills:</div>
+              <div>{skills}</div>
+            </Col>
+          </Row>
+          <Row>
+            <div className="d-flex justify-content-center">
+              <Button variant="primary" onClick={handleEdit}>
+                Edit
+              </Button>
+            </div>
+          </Row>
+        </Card.Body>
+      </Card>
+    );
+  }
 };
 
 export default SkillsCard;
