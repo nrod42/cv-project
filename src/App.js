@@ -21,7 +21,8 @@ const App = () => {
   const [workInfo, setWorkInfo] = useState([]);
   const [projectInfo, setProjectInfo] = useState([]);
   const [skills, setSkills] = useState([]);
-  // const [editing, setEditing] = useState([]);
+  const [isEditing, setEditing] = useState(false);
+  const [edited, setEdited] = useState(1);
 
   const [activeKey, setActiveKey] = useState("home");
 
@@ -39,6 +40,10 @@ const App = () => {
           setProjectInfo,
           skills,
           setSkills,
+          isEditing,
+          setEditing,
+          edited,
+          setEdited,
           activeKey,
           setActiveKey,
         }}

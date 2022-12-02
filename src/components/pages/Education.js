@@ -9,8 +9,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const Education = () => {
-  const { educationInfo } = useContext(SetPageInfoContext);
+  const { educationInfo, setEditing } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
+
+  const handleClose = () => {
+    setModalShow(!modalShow);
+    setEditing(false);
+  };
 
   return (
     <div className="page">
@@ -23,25 +28,20 @@ const Education = () => {
         />
       ))}
 
-      <Button variant="primary" onClick={() => setModalShow(!modalShow)}>
+      <Button variant="primary" onClick={handleClose}>
         Add Education
       </Button>
 
       <Modal show={modalShow} size="lg" centered>
         <Modal.Header>
           <Modal.Title>Education</Modal.Title>
-          <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
+          <CloseButton onClick={handleClose}></CloseButton>
         </Modal.Header>
         <Modal.Body>
-          <EducationForm onHide={() => setModalShow(!modalShow)} 
-          // edited={ make  a state which has the edited id. 
-          // Then, pass along the id and editing status to the form.
-          // In form, make the values equal to the obj with the matching id
-          // Lastly, when submit is hit, if editing status is true, set false and override the found obj with this one}
-          />
+          <EducationForm onHide={() => setModalShow(!modalShow)} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+          <Button variant="danger" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

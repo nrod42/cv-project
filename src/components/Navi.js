@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../index.css";
+import uniqid from "uniqid";
 
 const Navi = () => {
   const { activeKey, setActiveKey } = useContext(SetPageInfoContext);
@@ -29,7 +30,7 @@ const Navi = () => {
       <Nav className="me-auto" variant="pills" activeKey={activeKey}>
         {tabs.map((tab) => {
           return (
-            <Nav.Item>
+            <Nav.Item key={uniqid()}>
               <Nav.Link
                 as={Link}
                 to={tab.path}

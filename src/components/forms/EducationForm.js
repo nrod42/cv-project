@@ -1,13 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { SetPageInfoContext } from "../../App";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const EducationForm = (props) => {
-  const { setEducationInfo } = useContext(SetPageInfoContext);
+  const { educationInfo, setEducationInfo, isEditing, setEditing, edited } =
+    useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
+
   const [formInfo, setFormInfo] = useState({
     school: "",
     degree: "",
@@ -16,15 +18,26 @@ const EducationForm = (props) => {
     id: uniqid(),
   });
 
+  useEffect(() => {
+    if (isEditing) {
+      setFormInfo(educationInfo.find((card) => card.id === edited));
+    }
+  }, [isEditing, educationInfo, edited]);
+
   const handleSubmit = (e) => {
-    const form = e.currentTarget;
+    // e.currentTarget is the form
     e.preventDefault();
-    e.stopPropagation();
-    if (form.checkValidity() === true) {
-      props.onHide(false);
+    if (e.currentTarget.checkValidity() === true) {
+      props.onHide();
+      if (isEditing) {
+        setEducationInfo((prevState) =>
+          prevState.filter((item) => item.id !== edited)
+        );
+      }
       setEducationInfo((prev) => [...prev, formInfo]);
     }
     setValidated(true);
+    setEditing(false);
   };
 
   const handleFormChange = (e) => {
