@@ -2,15 +2,20 @@ import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import SkillsCard from "../cards/SkillsCard";
 import SkillsForm from "../forms/SkillsForm";
+import uniqid from "uniqid";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import CloseButton from "react-bootstrap/CloseButton";
-import "bootstrap/dist/css/bootstrap.min.css";
-import uniqid from "uniqid";
 
 const Skills = () => {
-  const { skills } = useContext(SetPageInfoContext);
+  const { skills, setEditing } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
+
+  const handleClose = () => {
+    setModalShow(!modalShow);
+    setEditing(false);
+  };
 
   return (
     <div className="page">
@@ -22,26 +27,25 @@ const Skills = () => {
           showModal={() => setModalShow(true)}
         />
       ))}
-      <>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Add Skills
-        </Button>
 
-        <Modal show={modalShow} size="lg" centered>
-          <Modal.Header>
-            <Modal.Title>Skills</Modal.Title>
-            <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
-          </Modal.Header>
-          <Modal.Body>
-            <SkillsForm onHide={() => setModalShow(!modalShow)} />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
+      <Button variant="primary" onClick={handleClose}>
+        Add Skills
+      </Button>
+
+      <Modal show={modalShow} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Skills</Modal.Title>
+          <CloseButton onClick={handleClose}></CloseButton>
+        </Modal.Header>
+        <Modal.Body>
+          <SkillsForm onHide={() => setModalShow(!modalShow)} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

@@ -1,11 +1,21 @@
+import React, { useContext } from "react";
+import { SetPageInfoContext } from "../../App";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProjectCard = (props) => {
-  const { name, description } = props.projectInfo;
+  const { setEditing, setEdited } = useContext(SetPageInfoContext);
+
+  const { name, description, id } = props.projectInfo;
+
+  const handleEdit = () => {
+    props.showModal();
+    setEditing(true);
+    setEdited(id);
+  };
 
   return (
     <Card style={{ width: "350px" }}>
@@ -24,7 +34,7 @@ const ProjectCard = (props) => {
         </Row>
         <Row>
           <div className="d-flex justify-content-center">
-            <Button variant="primary" onClick={props.showModal}>
+            <Button variant="primary" onClick={handleEdit}>
               Edit
             </Button>
           </div>

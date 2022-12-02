@@ -2,11 +2,11 @@ import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import EducationCard from "../cards/EducationCard";
 import EducationForm from "../forms/EducationForm";
+import uniqid from "uniqid";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import CloseButton from "react-bootstrap/CloseButton";
-import "bootstrap/dist/css/bootstrap.min.css";
-import uniqid from "uniqid";
 
 const Education = () => {
   const { educationInfo, setEditing } = useContext(SetPageInfoContext);

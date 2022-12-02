@@ -1,3 +1,5 @@
+import React, { useContext } from "react";
+import { SetPageInfoContext } from "../../App";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -5,8 +7,16 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const WorkCard = (props) => {
-  const { company, role, city, addrState, fromDate, toDate, description } =
+  const { setEditing, setEdited } = useContext(SetPageInfoContext);
+
+  const { company, role, city, addrState, fromDate, toDate, description, id } =
     props.workInfo;
+
+  const handleEdit = () => {
+    props.showModal();
+    setEditing(true);
+    setEdited(id);
+  };
 
   return (
     <Card style={{ width: "350px" }}>
@@ -45,13 +55,13 @@ const WorkCard = (props) => {
         </Row>
         <Row>
           <Col>
-            <div className="cardDataTitle">Desciption:</div>
+            <div className="cardDataTitle">Description:</div>
             <div>{description}</div>
           </Col>
         </Row>
         <Row>
           <div className="d-flex justify-content-center">
-            <Button variant="primary" onClick={props.showModal}>
+            <Button variant="primary" onClick={handleEdit}>
               Edit
             </Button>
           </div>

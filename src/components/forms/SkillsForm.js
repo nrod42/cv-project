@@ -1,29 +1,43 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import uniqid from "uniqid";
-import { Form, Button, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
 
 const SkillsForm = (props) => {
-  const { setSkills } = useContext(SetPageInfoContext);
+  const { skills, setSkills, isEditing, setEditing, edited } =
+    useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
+
   const [formInfo, setFormInfo] = useState({
     skills: "",
     id: uniqid(),
   });
 
+  useEffect(() => {
+    if (isEditing) {
+      setFormInfo(skills.find((skill) => skill.id === edited));
+    }
+  }, [isEditing, skills, edited]);
+
   const handleSubmit = (e) => {
-    const form = e.currentTarget;
+    // e.currentTarget is the form
     e.preventDefault();
-    e.stopPropagation();
-    if (form.checkValidity() === true) {
-      props.onHide(false);
+    if (e.currentTarget.checkValidity() === true) {
+      props.onHide();
+      if (isEditing) {
+        setSkills((prevState) =>
+          prevState.filter((skill) => skill.id !== edited)
+        );
+      }
       setSkills((prev) => [...prev, formInfo]);
     }
     setValidated(true);
+    setEditing(false);
   };
-
 
   const handleFormChange = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
@@ -44,7 +58,7 @@ const SkillsForm = (props) => {
         </Form.Group>
       </Row>
 
-      <Button variant="secondary" type="submit">
+      <Button variant="primary" type="submit">
         Add
       </Button>
     </Form>

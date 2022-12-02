@@ -1,12 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import uniqid from "uniqid";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const WorkForm = (props) => {
-  const { setWorkInfo } = useContext(SetPageInfoContext);
+  const { workInfo, setWorkInfo, isEditing, setEditing, edited } =
+    useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
+
   const [formInfo, setFormInfo] = useState({
     company: "",
     role: "",
@@ -15,17 +21,29 @@ const WorkForm = (props) => {
     fromDate: "",
     toDate: "",
     description: "",
+    id: uniqid(),
   });
 
+  useEffect(() => {
+    if (isEditing) {
+      setFormInfo(workInfo.find((card) => card.id === edited));
+    }
+  }, [isEditing, workInfo, edited]);
+
   const handleSubmit = (e) => {
-    const form = e.currentTarget;
+    // e.currentTarget is the form
     e.preventDefault();
-    e.stopPropagation();
-    if (form.checkValidity() === true) {
-      props.onHide(false);
+    if (e.currentTarget.checkValidity() === true) {
+      props.onHide();
+      if (isEditing) {
+        setWorkInfo((prevState) =>
+          prevState.filter((work) => work.id !== edited)
+        );
+      }
       setWorkInfo((prev) => [...prev, formInfo]);
     }
     setValidated(true);
+    setEditing(false);
   };
 
   const handleFormChange = (e) => {

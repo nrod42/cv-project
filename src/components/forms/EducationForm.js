@@ -1,8 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const EducationForm = (props) => {
   const { educationInfo, setEducationInfo, isEditing, setEditing, edited } =
@@ -20,7 +23,7 @@ const EducationForm = (props) => {
 
   useEffect(() => {
     if (isEditing) {
-      setFormInfo(educationInfo.find((card) => card.id === edited));
+      setFormInfo(educationInfo.find((edu) => edu.id === edited));
     }
   }, [isEditing, educationInfo, edited]);
 
@@ -31,7 +34,7 @@ const EducationForm = (props) => {
       props.onHide();
       if (isEditing) {
         setEducationInfo((prevState) =>
-          prevState.filter((item) => item.id !== edited)
+          prevState.filter((edu) => edu.id !== edited)
         );
       }
       setEducationInfo((prev) => [...prev, formInfo]);

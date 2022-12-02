@@ -1,34 +1,44 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import uniqid from "uniqid";
-import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const ProjectForm = (props) => {
-  const { setProjectInfo } = useContext(SetPageInfoContext);
+  const { projectInfo, setProjectInfo, isEditing, setEditing, edited } =
+    useContext(SetPageInfoContext);
 
   const [validated, setValidated] = useState(false);
+
   const [formInfo, setFormInfo] = useState({
     name: "",
     description: "",
     id: uniqid(),
   });
 
-  //   useEffect(() => {
-  //     if (props.edited !== undefined) {
-  //       setFormInfo(props.edited);
-  //     }
-  //   }, [props.edited]);
+  useEffect(() => {
+    if (isEditing) {
+      setFormInfo(projectInfo.find((card) => card.id === edited));
+    }
+  }, [isEditing, projectInfo, edited]);
 
   const handleSubmit = (e) => {
-    const form = e.currentTarget;
+    // e.currentTarget is the form
     e.preventDefault();
-    e.stopPropagation();
-    if (form.checkValidity() === true) {
-      props.onHide(false);
+    if (e.currentTarget.checkValidity() === true) {
+      props.onHide();
+      if (isEditing) {
+        setProjectInfo((prevState) =>
+          prevState.filter((project) => project.id !== edited)
+        );
+      }
       setProjectInfo((prev) => [...prev, formInfo]);
     }
     setValidated(true);
+    setEditing(false);
   };
 
   const handleFormChange = (e) => {

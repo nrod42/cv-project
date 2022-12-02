@@ -9,8 +9,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const Work = () => {
-  const { workInfo } = useContext(SetPageInfoContext);
+  const { workInfo, setEditing } = useContext(SetPageInfoContext);
   const [modalShow, setModalShow] = useState(false);
+
+  const handleClose = () => {
+    setModalShow(!modalShow);
+    setEditing(false);
+  };
 
   return (
     <div className="page">
@@ -22,26 +27,25 @@ const Work = () => {
           showModal={() => setModalShow(true)}
         />
       ))}
-      <>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Add Work Experience
-        </Button>
 
-        <Modal show={modalShow} size="lg" centered>
-          <Modal.Header>
-            <Modal.Title>Work</Modal.Title>
-            <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
-          </Modal.Header>
-          <Modal.Body>
-            <WorkForm onHide={() => setModalShow(!modalShow)} />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
+      <Button variant="primary" onClick={handleClose}>
+        Add Work Experience
+      </Button>
+
+      <Modal show={modalShow} size="lg" centered>
+        <Modal.Header>
+          <Modal.Title>Work</Modal.Title>
+          <CloseButton onClick={handleClose}></CloseButton>
+        </Modal.Header>
+        <Modal.Body>
+          <WorkForm onHide={() => setModalShow(!modalShow)} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
