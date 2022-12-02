@@ -33,7 +33,12 @@ const Education = () => {
           <CloseButton onClick={() => setModalShow(!modalShow)}></CloseButton>
         </Modal.Header>
         <Modal.Body>
-          <EducationForm onHide={() => setModalShow(!modalShow)} />
+          <EducationForm onHide={() => setModalShow(!modalShow)} 
+          // edited={ make  a state which has the edited id. 
+          // Then, pass along the id and editing status to the form.
+          // In form, make the values equal to the obj with the matching id
+          // Lastly, when submit is hit, if editing status is true, set false and override the found obj with this one}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => setModalShow(!modalShow)}>

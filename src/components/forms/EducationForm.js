@@ -16,12 +16,6 @@ const EducationForm = (props) => {
     id: uniqid(),
   });
 
-  // useEffect(() => {
-  //   if (props.edited !== undefined) {
-  //     setFormInfo(props.edited);
-  //   }
-  // }, [props.edited]);
-
   const handleSubmit = (e) => {
     const form = e.currentTarget;
     e.preventDefault();
@@ -32,24 +26,6 @@ const EducationForm = (props) => {
     }
     setValidated(true);
   };
-
-  // const handleSubmit = (e) => {
-  //   const form = e.currentTarget;
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   if (form.checkValidity() === true) {
-  //     props.onHide(false);
-  //     if (props.edited !== undefined) {
-  //       const index = educationInfo.indexOf(
-  //         educationInfo.find((edu) => edu.id === props.id)
-  //       );
-  //       setEducationInfo((prev) => prev.splice(index, 1, formInfo));
-  //     } else {
-  //       setEducationInfo((prev) => [...prev, formInfo]);
-  //     }
-  //   }
-  //   setValidated(true);
-  // };
 
   const handleFormChange = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });

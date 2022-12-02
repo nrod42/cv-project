@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../index.css";
 
 const Navi = () => {
+  const { activeKey, setActiveKey } = useContext(SetPageInfoContext);
+
   const tabs = [
     { name: "home", path: "/cv-project" },
     { name: "contact", path: "/cv-project/contact-info" },
@@ -17,14 +19,13 @@ const Navi = () => {
     { name: "review", path: "/cv-project/review" },
   ];
 
-  const { activeKey, setActiveKey } = useContext(SetPageInfoContext);
-
   return (
     <Navbar
       sticky="top"
       className="bg-white shadow-sm mb-3 ps-3 pe-3"
       style={{ overflowX: "auto" }}
     >
+      <div className="me-4 fs-4">Resume Creator</div>
       <Nav className="me-auto" variant="pills" activeKey={activeKey}>
         {tabs.map((tab) => {
           return (

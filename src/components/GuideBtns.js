@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../index.css";
 
 const GuideBtns = () => {
-  const { activeKey, setActiveKey } = useContext(SetPageInfoContext);
+  const { setActiveKey } = useContext(SetPageInfoContext);
 
   const location = useLocation();
   const navigate = useNavigate();

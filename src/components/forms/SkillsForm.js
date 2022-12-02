@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import uniqid from "uniqid";
 import { Form, Button, Row } from "react-bootstrap";

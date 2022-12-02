@@ -51,11 +51,11 @@ const Review = () => {
           {educationInfo.map((school) => {
             return (
               <div>
-                <div>
-                  {school.school} | {school.degree}
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <span>{school.school}</span><span>{`${new Date(school.fromDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })} - ${new Date(school.toDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })}`}</span>
                 </div>
                 <p>
-                <p>{`${new Date(school.fromDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })} - ${new Date(school.toDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })}`}</p>
+                {school.degree}
 
                 </p>
               </div>
@@ -67,10 +67,14 @@ const Review = () => {
           {workInfo.map((job) => {
             return (
               <div>
-                <div>
-                  {job.company} | {job.role} | {job.city}, {job.addrState}
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <span>{job.company}</span>
+                  <span>{job.city}, {job.addrState}</span>
                 </div>
-                <p>{`${new Date(job.fromDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })} - ${new Date(job.toDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })}`}</p>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <span>{job.role}</span>
+                  <span>{`${new Date(job.fromDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })} - ${new Date(job.toDate).toLocaleDateString('en-En',{ year: 'numeric', month: 'long', day: 'numeric' })}`}</span>
+                </div>
                 <p>{job.description}</p>
               </div>
             );
