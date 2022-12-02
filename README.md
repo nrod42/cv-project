@@ -10,7 +10,9 @@ The user is presented with specific forms on each page of the site and all forms
 
 ## Reflection
 
-This was the first project I made using React. While my first iteration was completed using class components (as a way to learn how to use them), I ended up re-creating everything using functional components. I learned all about the basic of React like, state, props, and the lifecycle methods. Once I started using functional components, I learned and used Hooks like, useState, useEffect, and useContext. After I learned how to use react router, I came back and incorporated it in this project as well.
+This was the first project I made using React. My first iteration was completed using class components, as a way to learn how to use them. I learned all about the basics of React like, state, props, and the lifecycle methods. I ended up re-creating everything using functional components where I learned all about Hooks like useState, useEffect, and useContext.
+
+I was initially switching between sections by simply hiding and displaying each one as neededHowever, once I learned about react router, I immediately came back and implemented it in this project which reduced the amount code and styling.
 
 As for the styling, I originally used custom CSS but ultimately I ended up using Bootstrap. I had never used Bootstrap up until this point but I decided it was a good opportunity to learn how to use it.
 
