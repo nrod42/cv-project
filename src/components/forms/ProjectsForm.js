@@ -58,11 +58,14 @@ const ProjectForm = (props) => {
             required
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please provide a project name.
+          </Form.Control.Feedback>
         </Form.Group>
       </Row>
 
       <Row className="mb-3">
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Group className="mb-3">
           <Form.Label>Project Description</Form.Label>
           <Form.Control
             as="textarea"

@@ -53,7 +53,7 @@ const WorkForm = (props) => {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
-        <Form.Group as={Col} md="12" controlId="validationCustom01">
+        <Form.Group as={Col} md="12">
           <Form.Label>Company</Form.Label>
           <Form.Control
             type="text"
@@ -63,11 +63,14 @@ const WorkForm = (props) => {
             required
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid company name.
+          </Form.Control.Feedback>
         </Form.Group>
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} md="12" controlId="validationCustom03">
+        <Form.Group as={Col} md="12">
           <Form.Label>Role</Form.Label>
           <Form.Control
             type="text"
@@ -78,13 +81,13 @@ const WorkForm = (props) => {
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
-            Please provide a valid address.
+            Please provide a valid job title.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom05">
+        <Form.Group as={Col} md="6">
           <Form.Label>City</Form.Label>
           <Form.Control
             type="text"
@@ -93,11 +96,12 @@ const WorkForm = (props) => {
             value={formInfo.city}
             required
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please provide a valid city.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="6" controlId="validationCustom06">
+        <Form.Group as={Col} md="6">
           <Form.Label>State</Form.Label>
           <Form.Control
             type="text"
@@ -106,13 +110,14 @@ const WorkForm = (props) => {
             value={formInfo.addrState}
             required
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please provide a valid state.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
       <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom06">
+        <Form.Group as={Col} md="6">
           <Form.Label>From</Form.Label>
           <Form.Control
             type="date"
@@ -121,11 +126,12 @@ const WorkForm = (props) => {
             value={formInfo.fromDate}
             required
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
-            Please provide a valid state.
+            Please provide a valid date.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="6" controlId="validationCustom07">
+        <Form.Group as={Col} md="6">
           <Form.Label>To:</Form.Label>
           <Form.Control
             type="date"
@@ -134,13 +140,14 @@ const WorkForm = (props) => {
             value={formInfo.toDate}
             required
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
-            Please provide a valid zip.
+            Please provide a valid date.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
       <Row className="mb-3">
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Group className="mb-3">
           <Form.Label>Short Description of Responsibilities</Form.Label>
           <Form.Control
             as="textarea"

@@ -41,7 +41,7 @@ const SkillsForm = (props) => {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Group className="mb-3">
           <Form.Label>Skills</Form.Label>
           <Form.Control
             as="textarea"

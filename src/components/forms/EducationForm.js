@@ -50,7 +50,7 @@ const EducationForm = (props) => {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
-        <Form.Group as={Col} md="12" controlId="validationCustom01">
+        <Form.Group as={Col} md="12">
           <Form.Label>University / School</Form.Label>
           <Form.Control
             type="text"
@@ -60,11 +60,14 @@ const EducationForm = (props) => {
             required
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid school name.
+          </Form.Control.Feedback>
         </Form.Group>
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} md="12" controlId="validationCustom03">
+        <Form.Group as={Col} md="12">
           <Form.Label>Degree</Form.Label>
           <Form.Control
             type="text"
@@ -75,13 +78,13 @@ const EducationForm = (props) => {
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
-            Please provide a valid address.
+            Please provide a valid degree title.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom06">
+        <Form.Group as={Col} md="6">
           <Form.Label>From</Form.Label>
           <Form.Control
             type="date"
@@ -90,11 +93,12 @@ const EducationForm = (props) => {
             value={formInfo.fromDate}
             required
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please provide a valid date.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="6" controlId="validationCustom07">
+        <Form.Group as={Col} md="6">
           <Form.Label>To:</Form.Label>
           <Form.Control
             type="date"
@@ -103,6 +107,7 @@ const EducationForm = (props) => {
             value={formInfo.toDate}
             required
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please provide a valid date.
           </Form.Control.Feedback>

@@ -49,7 +49,7 @@ const ContactForm = (props) => {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom01">
+        <Form.Group as={Col} md="6">
           <Form.Label>First name</Form.Label>
           <Form.Control
             required
@@ -60,8 +60,11 @@ const ContactForm = (props) => {
             value={formInfo.firstName}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid first name.
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="6" controlId="validationCustom02">
+        <Form.Group as={Col} md="6">
           <Form.Label>Last name</Form.Label>
           <Form.Control
             required
@@ -72,11 +75,14 @@ const ContactForm = (props) => {
             value={formInfo.lastName}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid last name.
+          </Form.Control.Feedback>
         </Form.Group>
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} md="12" controlId="validationCustom03">
+        <Form.Group as={Col} md="12">
           <Form.Label>Address:</Form.Label>
           <Form.Control
             required
@@ -94,7 +100,7 @@ const ContactForm = (props) => {
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom05">
+        <Form.Group as={Col} md="6">
           <Form.Label>City</Form.Label>
           <Form.Control
             required
@@ -104,11 +110,12 @@ const ContactForm = (props) => {
             placeholder="City"
             value={formInfo.city}
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please provide a valid city.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="validationCustom06">
+        <Form.Group as={Col} md="3">
           <Form.Label>State</Form.Label>
           <Form.Control
             required
@@ -118,11 +125,12 @@ const ContactForm = (props) => {
             placeholder="State"
             value={formInfo.addrState}
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please provide a valid state.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="validationCustom07">
+        <Form.Group as={Col} md="3">
           <Form.Label>Zip</Form.Label>
           <Form.Control
             required
@@ -132,6 +140,7 @@ const ContactForm = (props) => {
             placeholder="Zip"
             value={formInfo.zip}
           />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please provide a valid zip.
           </Form.Control.Feedback>
@@ -139,7 +148,7 @@ const ContactForm = (props) => {
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom08">
+        <Form.Group as={Col} md="6">
           <Form.Label>Phone Number</Form.Label>
           <Form.Control
             required
@@ -150,8 +159,11 @@ const ContactForm = (props) => {
             value={formInfo.phone}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid phone number.
+          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="6" controlId="validationCustom09">
+        <Form.Group as={Col} md="6">
           <Form.Label>E-mail</Form.Label>
           <Form.Control
             required
@@ -162,6 +174,9 @@ const ContactForm = (props) => {
             value={formInfo.email}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid e-mail.
+          </Form.Control.Feedback>
         </Form.Group>
       </Row>
 
