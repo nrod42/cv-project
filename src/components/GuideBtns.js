@@ -12,7 +12,7 @@ const GuideBtns = () => {
   const navigate = useNavigate();
 
   const nextBtn = () => {
-    if (location.pathname === "/cv-project/") {
+    if (location.pathname === "/cv-project") {
       navigate("/cv-project/contact-info");
       setActiveKey("contact");
     } else if (location.pathname === "/cv-project/contact-info") {
@@ -35,7 +35,7 @@ const GuideBtns = () => {
 
   const prevBtn = () => {
     if (location.pathname === "/cv-project/contact-info") {
-      navigate("/cv-project/");
+      navigate("/cv-project");
       setActiveKey("home");
     } else if (location.pathname === "/cv-project/education-history") {
       navigate("/cv-project/contact-info");
