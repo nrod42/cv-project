@@ -51,7 +51,7 @@ const App = () => {
         <Navi />
         <Container>
           <Routes>
-            <Route path="/cv-project/" element={<Home />}></Route>
+            <Route path="/cv-project" element={<Home />}></Route>
             <Route
               path="/cv-project/contact-info"
               element={<Contact />}
