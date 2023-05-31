@@ -10,7 +10,7 @@ const Navi = () => {
   const { activeKey, setActiveKey } = useContext(SetPageInfoContext);
 
   const tabs = [
-    { name: "home", path: "/cv-project" },
+    { name: "home", path: "/cv-project/" },
     { name: "contact", path: "/cv-project/contact-info" },
     { name: "education", path: "/cv-project/education-history" },
     { name: "work", path: "/cv-project/work-history" },

@@ -10,7 +10,7 @@ const GuideBtns = () => {
   const navigate = useNavigate();
 
   const pages = [
-    { path: "/cv-project", key: "home" },
+    { path: "/cv-project/", key: "home" },
     { path: "/cv-project/contact-info", key: "contact" },
     { path: "/cv-project/education-history", key: "education" },
     { path: "/cv-project/work-history", key: "work" },
