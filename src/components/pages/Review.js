@@ -3,6 +3,7 @@ import { SetPageInfoContext } from "../../App";
 import { Button } from "react-bootstrap";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import uniqid from "uniqid";
 
 const Review = () => {
   const { contactInfo, educationInfo, workInfo, projectInfo, skills } =
@@ -49,7 +50,7 @@ const Review = () => {
           <h2>Education</h2>
           {educationInfo.map((school) => {
             return (
-              <div>
+              <div key={uniqid()}>
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -72,7 +73,7 @@ const Review = () => {
           <h2>Work Experience</h2>
           {workInfo.map((job) => {
             return (
-              <div>
+              <div key={uniqid()}>
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -104,7 +105,7 @@ const Review = () => {
           <h2>Projects</h2>
           {projectInfo.map((project) => {
             return (
-              <div>
+              <div key={uniqid()}>
                 <div>{project.name}</div>
                 <p>{project.description}</p>
               </div>

@@ -76,7 +76,7 @@ const App = () => {
                 justifyContent: "center",
               }}
             >
-              © 2022 - Nigel Rodriguez
+              © {new Date().getFullYear()} - Nigel Rodriguez
             </span>
           </footer>
         </div>

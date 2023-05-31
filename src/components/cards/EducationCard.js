@@ -18,15 +18,13 @@ const EducationCard = (props) => {
   };
 
   return (
-    <Card style={{ width: "350px" }}>
+    <Card>
       <Card.Body className="cardBody">
         <Row>
           <Col>
             <div className="cardDataTitle">University / School:</div>
             <div>{school}</div>
           </Col>
-        </Row>
-        <Row>
           <Col>
             <div className="cardDataTitle">Degree:</div>
             <div>{degree}</div>

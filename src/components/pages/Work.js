@@ -1,11 +1,9 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import WorkCard from "../cards/WorkCard";
+import FormModal from "../FormModal";
 import WorkForm from "../forms/WorkForm";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import CloseButton from "react-bootstrap/CloseButton";
-import "bootstrap/dist/css/bootstrap.min.css";
 import uniqid from "uniqid";
 
 const Work = () => {
@@ -29,23 +27,15 @@ const Work = () => {
       ))}
 
       <Button variant="primary" onClick={handleClose}>
-        Add Work Experience
+        + Add Work Experience
       </Button>
 
-      <Modal show={modalShow} size="lg" centered>
-        <Modal.Header>
-          <Modal.Title>Work</Modal.Title>
-          <CloseButton onClick={handleClose}></CloseButton>
-        </Modal.Header>
-        <Modal.Body>
-          <WorkForm onHide={() => setModalShow(!modalShow)} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <FormModal
+        modalShow={modalShow}
+        handleClose={handleClose}
+        title={"Education Details"}
+        formType={<WorkForm onHide={() => setModalShow(!modalShow)} />}
+      />
     </div>
   );
 };

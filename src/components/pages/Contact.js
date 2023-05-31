@@ -1,12 +1,9 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import ContactCard from "../cards/ContactCard";
+import FormModal from "../FormModal";
 import ContactForm from "../forms/ContactForm";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import CloseButton from "react-bootstrap/CloseButton";
-import "bootstrap/dist/css/bootstrap.min.css";
-import uniqid from "uniqid";
 
 const Contact = () => {
   const { contactInfo, setEditing } = useContext(SetPageInfoContext);
@@ -22,7 +19,6 @@ const Contact = () => {
       <h1>Contact Info</h1>
 
       <ContactCard
-        key={uniqid()}
         contactInfo={contactInfo}
         showModal={() => setModalShow(true)}
       />
@@ -34,23 +30,16 @@ const Contact = () => {
           Object.keys(contactInfo).length !== 0 ? { display: "none" } : null
         }
       >
-        Add Contact Info
+        + Add Contact Info
       </Button>
 
-      <Modal show={modalShow} size="lg" centered>
-        <Modal.Header>
-          <Modal.Title>Contact</Modal.Title>
-          <CloseButton onClick={handleClose}></CloseButton>
-        </Modal.Header>
-        <Modal.Body>
-          <ContactForm onHide={() => setModalShow(!modalShow)} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <FormModal
+        modalShow={modalShow}
+        setModalShow={setModalShow}
+        handleClose={handleClose}
+        title={"Contact Info"}
+        formType={<ContactForm onHide={() => setModalShow(!modalShow)} />}
+      />
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { SetPageInfoContext } from "../App";
 import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../index.css";
 import uniqid from "uniqid";
 
 const Navi = () => {
@@ -21,29 +20,29 @@ const Navi = () => {
   ];
 
   return (
-    <Navbar
-      sticky="top"
-      className="bg-white shadow-sm mb-3 ps-3 pe-3"
-      style={{ overflowX: "auto" }}
-    >
-      <div className="me-4 fs-4">Resume Creator</div>
-      <Nav className="me-auto" variant="pills" activeKey={activeKey}>
-        {tabs.map((tab) => {
-          return (
-            <Nav.Item key={uniqid()}>
-              <Nav.Link
-                as={Link}
-                to={tab.path}
-                eventKey={tab.name}
-                onClick={() => setActiveKey(tab.name)}
-                style={activeKey === tab.name ? { color: "white" } : {}}
-              >
-                {`${tab.name[0].toUpperCase()}${tab.name.slice(1)}`}
-              </Nav.Link>
-            </Nav.Item>
-          );
-        })}
-      </Nav>
+    <Navbar bg="light" expand="lg" className="mb-3">
+      <Container>
+        <Navbar.Brand>Resume Creator</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto" variant="pills" activeKey={activeKey}>
+            {tabs.map((tab) => {
+              return (
+                <Nav.Link
+                  key={uniqid()}
+                  as={Link}
+                  to={tab.path}
+                  eventKey={tab.name}
+                  onClick={() => setActiveKey(tab.name)}
+                  style={activeKey === tab.name ? { color: "white" } : null}
+                >
+                  {`${tab.name[0].toUpperCase()}${tab.name.slice(1)}`}
+                </Nav.Link>
+              );
+            })}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 };

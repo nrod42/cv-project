@@ -18,7 +18,7 @@ const ProjectCard = (props) => {
   };
 
   return (
-    <Card style={{ width: "350px" }}>
+    <Card>
       <Card.Body className="cardBody">
         <Row>
           <Col>

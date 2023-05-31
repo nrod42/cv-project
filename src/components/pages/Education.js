@@ -1,12 +1,10 @@
 import React, { useState, useContext } from "react";
 import { SetPageInfoContext } from "../../App";
 import EducationCard from "../cards/EducationCard";
+import FormModal from "../FormModal";
 import EducationForm from "../forms/EducationForm";
-import uniqid from "uniqid";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import CloseButton from "react-bootstrap/CloseButton";
+import uniqid from "uniqid";
 
 const Education = () => {
   const { educationInfo, setEditing } = useContext(SetPageInfoContext);
@@ -29,23 +27,15 @@ const Education = () => {
       ))}
 
       <Button variant="primary" onClick={handleClose}>
-        Add Education
+        + Add Education
       </Button>
 
-      <Modal show={modalShow} size="lg" centered>
-        <Modal.Header>
-          <Modal.Title>Education</Modal.Title>
-          <CloseButton onClick={handleClose}></CloseButton>
-        </Modal.Header>
-        <Modal.Body>
-          <EducationForm onHide={() => setModalShow(!modalShow)} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <FormModal
+        modalShow={modalShow}
+        handleClose={handleClose}
+        title={"Education Details"}
+        formType={<EducationForm onHide={() => setModalShow(!modalShow)} />}
+      />
     </div>
   );
 };

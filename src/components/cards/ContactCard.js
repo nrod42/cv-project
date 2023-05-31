@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const ContactCard = (props) => {
+const ContactCard = ({ contactInfo, showModal }) => {
   const { setEditing, setEdited } = useContext(SetPageInfoContext);
 
   const {
@@ -18,17 +18,17 @@ const ContactCard = (props) => {
     phone,
     email,
     id,
-  } = props.contactInfo;
+  } = contactInfo;
 
   const handleEdit = () => {
-    props.showModal();
+    showModal();
     setEditing(true);
     setEdited(id);
   };
 
   if (firstName) {
     return (
-      <Card style={{ width: "350px" }}>
+      <Card>
         <Card.Body className="cardBody">
           <Row>
             <Col>
