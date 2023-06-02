@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { SetPageInfoContext } from "../../App";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { SetPageInfoContext } from "../AppContext";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";

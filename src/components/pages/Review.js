@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SetPageInfoContext } from "../../App";
+import { SetPageInfoContext } from "../AppContext";
 import { Button } from "react-bootstrap";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { SetPageInfoContext } from "../../App";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { SetPageInfoContext } from "../AppContext";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -29,7 +28,7 @@ const SkillsCard = (props) => {
           </Row>
           <Row>
             <div className="d-flex justify-content-center">
-              <Button variant="primary" onClick={handleEdit}>
+              <Button variant="light" onClick={handleEdit}>
                 Edit
               </Button>
             </div>

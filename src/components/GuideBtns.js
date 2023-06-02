@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SetPageInfoContext } from "../App";
+import { SetPageInfoContext } from "../components/AppContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
@@ -42,7 +42,7 @@ const GuideBtns = () => {
   return (
     <div className="guideBtns">
       <Button
-        variant="primary"
+        variant="light"
         style={{
           visibility: currentIndex === 0 ? "hidden" : "visible",
         }}
@@ -51,7 +51,7 @@ const GuideBtns = () => {
         ← Previous
       </Button>
       <Button
-        variant="primary"
+        variant="secondary"
         style={{
           visibility: currentIndex === pages.length - 1 ? "hidden" : "visible",
         }}

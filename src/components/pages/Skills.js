@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { SetPageInfoContext } from "../../App";
+import { SetPageInfoContext } from "../AppContext";
 import SkillsCard from "../cards/SkillsCard";
 import FormModal from "../FormModal";
 import SkillsForm from "../forms/SkillsForm";
@@ -21,7 +21,7 @@ const Skills = () => {
       <SkillsCard skills={skills} showModal={() => setModalShow(true)} />
 
       <Button
-        variant="primary"
+        variant="light"
         onClick={handleClose}
         style={Object.keys(skills).length !== 0 ? { display: "none" } : null}
       >

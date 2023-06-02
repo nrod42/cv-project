@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { SetPageInfoContext } from "../../App";
+import { SetPageInfoContext } from "../AppContext";
 import EducationCard from "../cards/EducationCard";
 import FormModal from "../FormModal";
 import EducationForm from "../forms/EducationForm";

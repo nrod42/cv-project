@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SetPageInfoContext } from "../App";
+import { SetPageInfoContext } from "../components/AppContext";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -20,12 +20,12 @@ const Navi = () => {
   ];
 
   return (
-    <Navbar bg="light" expand="lg" className="mb-3">
+    <Navbar bg="dark" expand="lg" className="mb-3">
       <Container>
-        <Navbar.Brand>Resume Creator</Navbar.Brand>
+        <Navbar.Brand style={{ color: "white" }}>Resume Creator</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto" variant="pills" activeKey={activeKey}>
+          <Nav className="m-auto " variant="pills" activeKey={activeKey}>
             {tabs.map((tab) => {
               return (
                 <Nav.Link
@@ -34,7 +34,7 @@ const Navi = () => {
                   to={tab.path}
                   eventKey={tab.name}
                   onClick={() => setActiveKey(tab.name)}
-                  style={activeKey === tab.name ? { color: "white" } : null}
+                  style={{ color: "white" }}
                 >
                   {`${tab.name[0].toUpperCase()}${tab.name.slice(1)}`}
                 </Nav.Link>

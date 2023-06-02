@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { AppContextProvider } from "./components/AppContext";
 import Home from "./components/pages/Home";
 import Contact from "./components/pages/Contact";
 import Skills from "./components/pages/Skills";
@@ -7,47 +8,14 @@ import Education from "./components/pages/Education";
 import Work from "./components/pages/Work";
 import Projects from "./components/pages/Project";
 import Review from "./components/pages/Review";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
 import GuideBtns from "./components/GuideBtns";
 import Navi from "./components/Navi";
 import Container from "react-bootstrap/Container";
 
-export const SetPageInfoContext = React.createContext();
-
 const App = () => {
-  const [contactInfo, setContactInfo] = useState({});
-  const [educationInfo, setEducationInfo] = useState([]);
-  const [workInfo, setWorkInfo] = useState([]);
-  const [projectInfo, setProjectInfo] = useState([]);
-  const [skills, setSkills] = useState({});
-  const [isEditing, setEditing] = useState(false);
-  const [edited, setEdited] = useState(1);
-
-  const [activeKey, setActiveKey] = useState("home");
-
   return (
     <div className="App d-flex flex-column justify-content-space-between">
-      <SetPageInfoContext.Provider
-        value={{
-          contactInfo,
-          setContactInfo,
-          educationInfo,
-          setEducationInfo,
-          workInfo,
-          setWorkInfo,
-          projectInfo,
-          setProjectInfo,
-          skills,
-          setSkills,
-          isEditing,
-          setEditing,
-          edited,
-          setEdited,
-          activeKey,
-          setActiveKey,
-        }}
-      >
+      <AppContextProvider>
         <Navi />
         <Container>
           <Routes>
@@ -80,7 +48,7 @@ const App = () => {
             </span>
           </footer>
         </div>
-      </SetPageInfoContext.Provider>
+      </AppContextProvider>
     </div>
   );
 };
